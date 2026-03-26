@@ -13,6 +13,9 @@ const montserrat = Montserrat({
 export const metadata = {
   title: "Coreberg - Strategische Personalgewinnung",
   description: "Exzellente Personalberatung für nachhaltigen Unternehmenserfolg.",
+  icons: {
+    icon: "/images/favicon.png",
+  },
 };
 
 export default function RootLayout({ children }) {
