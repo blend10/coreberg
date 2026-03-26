@@ -34,7 +34,7 @@ export default function TrustedPartner() {
             Trusted Partner
           </p>
           <p className="text-[#42484E] leading-relaxed">
-            Mit COMBERIQ gewinnen Unternehmen einen{" "}
+            Mit COREBERG gewinnen Unternehmen einen{" "}
             <br className="hidden md:block" />
             Partner, der Talente gezielt identifiziert, Prozesse{" "}
             <br className="hidden md:block" />

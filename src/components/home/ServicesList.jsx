@@ -142,7 +142,7 @@ export default function ServicesList() {
           </div>
 
           {/* Right: Image */}
-          <div className="md:w-1/2 relative h-[300px] md:h-[480px] rounded-sm overflow-hidden shadow-md">
+          <div className="w-full md:w-1/2 relative h-[300px] md:h-[480px] rounded-sm overflow-hidden shadow-md">
             <Image
               src={service.image}
               alt={service.title}
