@@ -5,9 +5,9 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <div className="bg-white p-3">
-      <footer className="bg-[#0A162C] p-3 rounded-2xl text-white">
+      <footer className="bg-[#0A162C] p-3  rounded-[36px] md:rounded-2xl text-white">
         {/* CTA Section */}
-        <div className="container mx-auto bg-[#B1B9C1] rounded-[30px] mt-5 px-6 md:px-16 py-10 relative overflow-hidden">
+        <div className="container mx-auto bg-[#B1B9C1] rounded-[30px] mt-0 md:mt-5 px-6 md:px-16 py-10 relative overflow-hidden">
           <div className="absolute top-0 left-0 pointer-events-none z-0">
             <Image
               src="/images/Vector.svg"
@@ -140,6 +140,8 @@ export default function Footer() {
                 { label: "Über uns", href: "/uberuns" },
                 { label: "Dienstleistungen", href: "/dienstleistungen" },
                 { label: "Kontakt", href: "/kontakt" },
+                { label: "Impressum", href: "/impressum" },
+                { label: "Datenschutzerklärung", href: "/vertraulichkeits-und-datenschutzerklaerung" },
               ].map((link) => (
                 <Link
                   key={link.label}

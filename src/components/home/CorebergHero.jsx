@@ -130,7 +130,7 @@ export default function CorebergHero() {
             key={i}
             className={`
               relative w-full md:flex-1 md:min-w-[378px]
-              h-auto md:h-[400px]
+              h-auto md:h-[400px] mt-2
               p-6 md:p-10
               flex flex-col justify-end
               transition-transform duration-300 hover:scale-[0.98] md:hover:scale-[0.92]
