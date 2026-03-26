@@ -1,4 +1,3 @@
-// AccordionServices.jsx
 "use client";
 import { useState } from "react";
 import Image from "next/image";
@@ -56,30 +55,36 @@ export default function AccordionServices() {
   };
 
   return (
-    <section className="bg-[#051423] text-white py-20 px-6 md:px-16">
+    <section className="bg-[#051423] text-white py-12 md:py-20 px-4 md:px-16">
       <div className="container mx-auto flex flex-col gap-2">
         {/* Header */}
-        <p className="text-[#B1B9C1] mb-10">Strength at the Core of Talent</p>
-        <h2 className="text-[32px] font-semibold text-white mb-10">
-          Erfahrung ist durch nichts zu <br /> ersetzen
+        <p className="text-[#B1B9C1] mb-6 md:mb-10">
+          Strength at the Core of Talent
+        </p>
+        <h2 className="text-[24px] md:text-[32px] font-semibold text-white mb-8 md:mb-10">
+          Erfahrung ist durch nichts zu{" "}
+          <br className="hidden md:block" /> ersetzen
         </h2>
 
         {/* Accordion Items */}
         {services.map((service, index) => (
           <div key={index} className="border-t border-white/10">
-            {/* Row Header — always visible */}
+            {/* Row Header */}
             <button
               onClick={() => toggle(index)}
-              className="w-full flex items-center justify-between py-5 text-left group"
+              className="w-full flex items-center justify-between py-4 md:py-5 text-left group"
             >
-              <div className="flex items-center gap-4">
-                <span className="text-[20px]  text-white">
+              <div className="flex items-center gap-3 md:gap-4">
+                <span className="text-[16px] md:text-[20px] text-white">
                   {service.number}
                 </span>
-                <span className="text-[20px]  text-white">{service.label}</span>
+                <span className="text-[16px] md:text-[20px] text-white">
+                  {service.label}
+                </span>
               </div>
+              {/* Indicator */}
               {/* <span
-                className="text-gray-500 text-lg transition-transform duration-300"
+                className="text-white/50 text-xl transition-transform duration-300 flex-shrink-0"
                 style={{
                   transform:
                     openIndex === index ? "rotate(45deg)" : "rotate(0deg)",
@@ -93,17 +98,18 @@ export default function AccordionServices() {
             <div
               className={`overflow-hidden transition-all duration-500 ease-in-out ${
                 openIndex === index
-                  ? "max-h-[600px] opacity-100 pb-10"
+                  ? "max-h-[1200px] opacity-100 pb-8 md:pb-10"
                   : "max-h-0 opacity-0"
               }`}
             >
-              <div className="flex flex-row gap-10 items-center justify-between pt-2">
-                {/* Left */}
-                <div className="flex flex-col w-1/2 gap-5">
-                  <h3 className="text-[26px] font-semibold text-white">
+              <div className="flex flex-col md:flex-row gap-8 md:gap-10 items-start md:items-center justify-between pt-2">
+                
+                {/* Left: Text */}
+                <div className="flex flex-col w-full md:w-1/2 gap-4 md:gap-5">
+                  <h3 className="text-[22px] md:text-[26px] font-semibold text-white">
                     {service.title}
                   </h3>
-                  <p className="text-[17px] text-white leading-relaxed">
+                  <p className="text-[15px] md:text-[17px] text-white leading-relaxed">
                     {service.description}
                   </p>
                   <a
@@ -112,17 +118,18 @@ export default function AccordionServices() {
                   >
                     {service.cta}
                   </a>
-                  <ul className="flex flex-col  gap-3 mt-10">
+                  <ul className="flex flex-col gap-3 mt-6 md:mt-10">
                     {service.bullets.map((b, i) => (
                       <li
                         key={i}
-                        className="flex mb-2 border-b border-white/10 pb-4  items-center gap-3 text-[17px] text-white"
+                        className="flex mb-2 border-b border-white/10 pb-4 items-center gap-3 text-[15px] md:text-[17px] text-white"
                       >
                         <Image
                           src="/images/tik2.svg"
                           alt="Check"
                           width={20}
                           height={20}
+                          className="flex-shrink-0"
                         />
                         {b}
                       </li>
@@ -131,7 +138,7 @@ export default function AccordionServices() {
                 </div>
 
                 {/* Right: Image */}
-                <div className="relative w-full h-64 md:w-[590px] md:h-[550px] overflow-hidden flex items-end rounded-sm">
+                <div className="relative w-full h-[220px] md:w-[590px] md:h-[550px] overflow-hidden rounded-sm flex-shrink-0">
                   <Image
                     src={service.image}
                     alt={service.title}

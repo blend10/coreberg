@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { Plus, Minus, ArrowRight } from "lucide-react";
 import Image from "next/image";
+
 const accordionItems = [
   {
     id: 1,
@@ -18,14 +19,15 @@ const accordionItems = [
 ];
 
 export default function VakanzenSection() {
-  const [openItem, setOpenItem] = useState(2); // second item open by default
+  const [openItem, setOpenItem] = useState(2);
 
   const toggle = (id) => setOpenItem(openItem === id ? null : id);
 
   return (
-    <section className="container mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+    <section className="container mx-auto px-4 md:px-6 py-12 md:py-16 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 items-center">
+      
       {/* Left: Image */}
-      <div className="relative h-full">
+      <div className="relative w-full hidden md:block">
         {/* Large background image */}
         <div className="w-[511px] h-[763px] relative rounded-2xl overflow-hidden shadow-lg">
           <Image
@@ -33,12 +35,11 @@ export default function VakanzenSection() {
             alt="Matterhorn Background"
             fill
             className="object-cover"
-            priority
           />
         </div>
 
         {/* Overlapping foreground image */}
-        <div className="absolute right-15 top-1/2 -translate-y-1/2 w-[289px] h-[434px] rounded-2xl overflow-hidden ">
+        <div className="absolute right-15 top-1/2 -translate-y-1/2 w-[289px] h-[434px] rounded-2xl overflow-hidden">
           <Image
             src="/images/handshake.jpg"
             alt="Personal Handshake"
@@ -48,12 +49,22 @@ export default function VakanzenSection() {
         </div>
       </div>
 
-      {/* Right: Content */}
-      <div className="flex flex-col gap-6">
-        {/* Title */}
-        <h2 className="text-3xl font-semibold text-gray-900">Vakanzen</h2>
+      {/* Mobile-only image: single stacked image */}
+      <div className="relative w-full h-[260px] rounded-2xl overflow-hidden shadow-lg md:hidden">
+        <Image
+          src="/images/handshake.jpg"
+          alt="Personal Handshake"
+          fill
+          className="object-cover"
+        />
+      </div>
 
-        {/* Description paragraphs */}
+      {/* Right: Content */}
+      <div className="flex flex-col gap-5 md:gap-6">
+        <h2 className="text-2xl md:text-3xl font-semibold text-gray-900">
+          Vakanzen
+        </h2>
+
         <p className="text-gray-600 text-sm leading-relaxed">
           Bei COREBERG publizieren wir keine offenen Stellen. Unser Ansatz ist
           diskret und individuell – wir konzentrieren uns darauf, Talente
@@ -73,7 +84,7 @@ export default function VakanzenSection() {
         </p>
 
         {/* Buttons */}
-        <div className="flex gap-4 mt-2">
+        <div className="flex flex-wrap gap-3 md:gap-4 mt-2">
           <button className="flex items-center gap-2 bg-gray-900 text-white text-sm font-medium px-6 py-3 rounded-md hover:bg-gray-700 transition">
             UPLOAD CV <ArrowRight size={16} />
           </button>
@@ -83,14 +94,14 @@ export default function VakanzenSection() {
         </div>
 
         {/* Accordion */}
-        <div className="mt-4 border-t border-gray-200">
+        <div className="mt-3 md:mt-4 border-t border-gray-200">
           {accordionItems.map((item) => (
             <div key={item.id} className="border-b border-gray-200">
               <button
                 onClick={() => toggle(item.id)}
-                className="w-full flex items-center justify-between py-4 text-left text-gray-900 font-bold text-sm hover:text-gray-600 transition"
+                className="w-full flex items-center justify-between py-4 text-left text-gray-900 font-bold text-sm hover:text-gray-600 transition gap-4"
               >
-                {item.title}
+                <span>{item.title}</span>
                 {openItem === item.id ? (
                   <Minus size={16} className="text-gray-500 flex-shrink-0" />
                 ) : (

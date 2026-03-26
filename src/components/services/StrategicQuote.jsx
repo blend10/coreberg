@@ -18,9 +18,11 @@ const points = [
 
 const StrategicQuote = () => {
   return (
-    <div className="container mx-auto flex flex-row items-start py-20 justify-start">
-      <div className="flex flex-col items-start w-[20%]">
-        <div className="relative w-[120px] h-[160px]">
+    <div className="container mx-auto flex flex-col md:flex-row items-start py-12 md:py-20 px-4 md:px-6 justify-start gap-8 md:gap-0">
+      
+      {/* Left: Author block */}
+      <div className="flex flex-row md:flex-col items-center md:items-start gap-5 md:gap-0 w-full md:w-[20%]">
+        <div className="relative w-[80px] h-[110px] md:w-[120px] md:h-[160px] flex-shrink-0">
           <Image
             src="/images/azir.png"
             alt="Azir Spahiu"
@@ -31,30 +33,35 @@ const StrategicQuote = () => {
             <Image src="/images/quote.svg" alt="Quote" width={40} height={40} />
           </div>
         </div>
-        <div className=" mt-10">
+
+        {/* Name + title — inline on mobile, stacked below image on desktop */}
+        <div className="md:mt-10">
           <div className="relative">
-            <h1 className="text-[#091019] text-[17px] font-semibold">
+            <h1 className="text-[#091019] text-[15px] md:text-[17px] font-semibold">
               Azir Spahiu
             </h1>
-            <h1 className="text-[#42484E] text-[15px] ">
+            <h1 className="text-[#42484E] text-[13px] md:text-[15px]">
               Founder & Managing Partner
             </h1>
-            <div className="absolute bottom-0 left-20 w-[171px] h-[67px] ">
-              <Image src="/images/nenshkrimi.png" alt="Quote" fill />
+            {/* Signature — only show on desktop where space allows */}
+            <div className="absolute bottom-0 left-20 w-[171px] h-[67px] hidden md:block">
+              <Image src="/images/nenshkrimi.png" alt="Signature" fill />
             </div>
           </div>
         </div>
       </div>
-      <div className="w-[80%]">
+
+      {/* Right: Content */}
+      <div className="w-full md:w-[80%]">
         <section>
-          <div className=" mx-auto flex flex-col gap-10">
-            <h2 className="text-[32px] font-medium text-[#091019] leading-snug ">
+          <div className="flex flex-col gap-7 md:gap-10">
+            <h2 className="text-[22px] md:text-[32px] font-medium text-[#091019] leading-snug">
               Die Besetzung von Schlüsselpositionen ist ein strategischer Hebel
               für nachhaltigen Unternehmenserfolg.
             </h2>
 
             {/* Two-column content */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
               {/* Left: Body text + CTA */}
               <div className="flex flex-col gap-5">
                 <p className="text-sm text-[#42484E] leading-relaxed">
@@ -82,7 +89,7 @@ const StrategicQuote = () => {
               </div>
 
               {/* Right: Checkmark points */}
-              <div className="flex flex-col gap-6">
+              <div className="flex flex-col gap-5 md:gap-6">
                 {points.map((point, index) => (
                   <div key={index} className="flex gap-3 items-start">
                     <Image
@@ -93,7 +100,7 @@ const StrategicQuote = () => {
                       className="mt-0.5 flex-shrink-0"
                     />
                     <p className="text-sm text-[#42484E] leading-relaxed">
-                      <span className="">{point.number} </span>
+                      <span className="font-medium">{point.number} </span>
                       {point.text}
                     </p>
                   </div>

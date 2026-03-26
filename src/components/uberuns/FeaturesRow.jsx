@@ -24,23 +24,23 @@ const features = [
 
 export default function FeaturesRow() {
   return (
-    <section className="bg-white py-16 px-6 md:px-16 border-t border-gray-100">
-      <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
+    <section className="bg-white py-12 md:py-20 px-5 md:px-16 border-t border-gray-100">
+      <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-10">
         {features.map((feature, index) => (
-          <div key={index} className="flex flex-row items-center gap-4">
+          <div key={index} className="flex flex-col sm:flex-row items-start md:items-center gap-5 md:gap-4">
             {/* Icon */}
-            <div>
-              <div className=" w-[48px] h-[48px] relative flex items-center justify-center text-gray-400 ">
+            <div className="shrink-0 pt-1">
+              <div className="w-[42px] h-[42px] md:w-[48px] md:h-[48px] relative flex items-center justify-center text-gray-400">
                 {feature.icon}
               </div>
             </div>
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-3 md:gap-4">
               {/* Title */}
-              <h3 className="text-lg font-medium text-[#091019]">
+              <h3 className="text-[18px] md:text-lg font-semibold text-[#091019] leading-tight">
                 {feature.title}
               </h3>
               {/* Description */}
-              <p className="text-[15px] text-[#42484E] leading-relaxed">
+              <p className="text-[14px] md:text-[15px] text-[#42484E] leading-relaxed">
                 {feature.description}
               </p>
             </div>

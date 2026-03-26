@@ -17,7 +17,7 @@ const tabs = [
         "Strategischer Ansatz statt klassischer Rekrutierung",
         "Langfristiger Unternehmenserfolg im Fokus",
       ],
-      image: "/images/tab1.jpg",
+      image: "/images/service-1.jpg",
     },
   },
   {
@@ -33,7 +33,7 @@ const tabs = [
         "Kulturelle und fachliche Passung",
         "Strukturierter, transparenter Prozess",
       ],
-      image: "/images/tab2.jpg",
+      image: "/images/service-2.jpg",
     },
   },
   {
@@ -49,7 +49,7 @@ const tabs = [
         "Schnelle Reaktionsfähigkeit",
         "Skalierbare Lösungen",
       ],
-      image: "/images/tab3.jpg",
+      image: "/images/service-3.jpg",
     },
   },
   {
@@ -65,7 +65,7 @@ const tabs = [
         "Diskretion und Professionalität",
         "Offene und ehrliche Kommunikation",
       ],
-      image: "/images/tab4.jpg",
+      image: "/images/handshake.jpg",
     },
   },
 ];
@@ -124,11 +124,14 @@ export default function TabsSection() {
           </div>
 
           {/* Right: Image */}
-          <div className="w-full h-72 md:h-[560px] overflow-hidden rounded-sm">
-            <img
+          <div className="relative w-full h-72 md:h-[560px] overflow-hidden rounded-sm shadow-md bg-gray-50">
+            <Image
               src={active.image}
               alt={active.title}
-              className="w-full h-full object-cover"
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover"
+              loading="lazy"
             />
           </div>
         </div>

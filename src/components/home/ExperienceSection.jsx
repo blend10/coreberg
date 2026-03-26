@@ -1,4 +1,3 @@
-// components/ExperienceSection.jsx
 "use client";
 
 import { useRef, useState } from "react";
@@ -11,7 +10,6 @@ const services = [
       "Identifikation und Gewinnung von Fachspezialisten. Wir finden die Köpfe, die Ihr operatives Kerngeschäft stärken – präzise und mit Blick für das Detail.",
     image: "/images/search.svg",
   },
-
   {
     title: "Executive Search",
     description:
@@ -61,10 +59,22 @@ export default function ExperienceSection() {
     sliderRef.current.scrollLeft = scrollLeft - walk;
   };
 
+  // Touch support for mobile swipe
+  const onTouchStart = (e) => {
+    setStartX(e.touches[0].pageX - sliderRef.current.offsetLeft);
+    setScrollLeft(sliderRef.current.scrollLeft);
+  };
+
+  const onTouchMove = (e) => {
+    const x = e.touches[0].pageX - sliderRef.current.offsetLeft;
+    const walk = (x - startX) * 1.5;
+    sliderRef.current.scrollLeft = scrollLeft - walk;
+  };
+
   return (
-    <section className="bg-[#0A162C] text-white py-20 px-6 md:px-16 overflow-hidden relative">
+    <section className="bg-[#0A162C] text-white py-12 md:py-20 px-4 md:px-16 overflow-hidden relative">
       {/* Globe background watermark */}
-      <div className="absolute right-0  top-0 h-[220px] w-[600px] pointer-events-none select-none ">
+      <div className="absolute right-0 top-0 h-[140px] w-[300px] md:h-[220px] md:w-[600px] pointer-events-none select-none">
         <Image
           src="/images/globe.svg"
           alt="Globe"
@@ -74,55 +84,66 @@ export default function ExperienceSection() {
       </div>
 
       {/* Top label + heading */}
-      <div className="mb-10 container mx-auto">
+      <div className="mb-8 md:mb-10 container mx-auto">
         <p className="text-xs text-white/40 uppercase tracking-widest mb-3">
           Strength at the Core of Talent.
         </p>
-        <h2 className="text-3xl md:text-[42px] font-semibold leading-tight">
-          Erfahrung ist durch nichts zu <br /> ersetzen
+        <h2 className="text-2xl md:text-[42px] font-semibold leading-tight">
+          Erfahrung ist durch nichts zu{" "}
+          <br className="hidden md:block" /> ersetzen
         </h2>
       </div>
 
       {/* Divider */}
-      <hr className="border-white/10 mb-10 container mx-auto" />
+      <hr className="border-white/10 mb-8 md:mb-10 container mx-auto" />
 
       {/* Bottom grid: left text + draggable cards */}
-      <div className="flex flex-col md:flex-row gap-10 container mx-auto">
+      <div className="flex flex-col md:flex-row gap-8 md:gap-10 container mx-auto">
         {/* Left text block */}
-        <div className="w-1/2 flex flex-col gap-10 items-start justify-between">
-          <p className="text-lg text-white leading-relaxed">
-            Die heutige Rekrutierungswelt ist geprägt von <br /> technologischem
-            Überfluss. Wir bei COREBERG <br /> nutzen Innovation dort, wo sie
-            Prozesse beschleunigt. <br /> Unsere Arbeit beginnt dort, wo die
-            Software an ihre br Grenzen stösst.
+        <div className="w-full md:w-1/2 flex flex-col gap-6 md:gap-10 items-start justify-between">
+          <p className="text-base md:text-lg text-white leading-relaxed">
+            Die heutige Rekrutierungswelt ist geprägt von{" "}
+            <br className="hidden md:block" />
+            technologischem Überfluss. Wir bei COREBERG{" "}
+            <br className="hidden md:block" />
+            nutzen Innovation dort, wo sie Prozesse beschleunigt.{" "}
+            <br className="hidden md:block" />
+            Unsere Arbeit beginnt dort, wo die Software an ihre
+            Grenzen stösst.
           </p>
-          <p className="text-lg text-[#B1B9C1] leading-relaxed">
-            Wir präsentieren Ihnen keine Auswahl von fünfzig <br /> Dossiers.
-            Wir präsentieren Ihnen die Lösung. Unsere <br /> Klienten schätzen
-            uns für eine Arbeitsweise, die auf Aufrichtigkeit und tiefer <br />
+          <p className="text-base md:text-lg text-[#B1B9C1] leading-relaxed">
+            Wir präsentieren Ihnen keine Auswahl von fünfzig{" "}
+            <br className="hidden md:block" />
+            Dossiers. Wir präsentieren Ihnen die Lösung. Unsere{" "}
+            <br className="hidden md:block" />
+            Klienten schätzen uns für eine Arbeitsweise, die auf
+            Aufrichtigkeit und tiefer{" "}
+            <br className="hidden md:block" />
             Marktkenntnis fusst.
           </p>
-          <button className="mt-4 bg-white text-[#0d1b2a] rounded-lg  border border-white text-sm px-5 py-2.5 flex items-center gap-2 hover:bg-transparent hover:text-white transition-colors duration-200">
+          <button className="mt-2 md:mt-4 bg-white text-[#0d1b2a] rounded-lg border border-white text-sm px-5 py-2.5 flex items-center gap-2 hover:bg-transparent hover:text-white transition-colors duration-200">
             Beratung anfragen <span>→</span>
           </button>
         </div>
 
-        {/* Draggable cards */}
+        {/* Draggable / swipeable cards */}
         <div
           ref={sliderRef}
-          className="flex gap-0 overflow-x-scroll scrollbar-hide cursor-grab select-none flex-1"
+          className="flex gap-0 overflow-x-scroll scrollbar-hide cursor-grab select-none flex-1 -mx-4 md:mx-0 px-4 md:px-0"
           onMouseDown={onMouseDown}
           onMouseLeave={onMouseLeave}
           onMouseUp={onMouseUp}
           onMouseMove={onMouseMove}
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
         >
           {services.map((service, index) => (
             <div
               key={index}
-              className="w-[510px] h-[410px] border border-white/15 bg-[#0A162C] hover:bg-[#2C3F51] p-7 flex flex-col justify-between gap-8 shrink-0"
+              className="w-[80vw] sm:w-[340px] md:w-[510px] h-auto md:h-[410px] border border-white/15 bg-[#0A162C] hover:bg-[#2C3F51] p-5 md:p-7 flex flex-col justify-between gap-6 md:gap-8 shrink-0"
             >
-              <div className="space-y-4">
-                <h3 className="text-[24px] font-semibold text-white">
+              <div className="space-y-3 md:space-y-4">
+                <h3 className="text-[20px] md:text-[24px] font-semibold text-white">
                   {service.title}
                 </h3>
                 <hr className="border-white/15" />
@@ -131,7 +152,7 @@ export default function ExperienceSection() {
                 </p>
               </div>
               <div className="flex items-center justify-between mt-auto">
-                <div className="relative w-12 h-12">
+                <div className="relative w-10 h-10 md:w-12 md:h-12">
                   {service.image ? (
                     <Image
                       src={service.image}
@@ -143,7 +164,7 @@ export default function ExperienceSection() {
                     <div className="w-full h-full bg-white rounded-full" />
                   )}
                 </div>
-                <button className="w-10 h-10 rounded-full bg-white text-[#0d1b2a] flex items-center justify-center hover:bg-white/80 transition">
+                <button className="w-9 h-9 md:w-10 md:h-10 rounded-full bg-white text-[#0d1b2a] flex items-center justify-center hover:bg-white/80 transition">
                   →
                 </button>
               </div>

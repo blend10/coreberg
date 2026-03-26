@@ -10,7 +10,17 @@ const page = () => {
   return (
     <div>
       <div className="flex flex-col items-center justify-center min-h-[40vh] p-3">
-        <StartPage />
+        <StartPage
+          title="Menschen und"
+          titleHighlight="Talent"
+          titleSuffix="im Mittelpunkt"
+          subheading="Unser Anspruch"
+          description="Unser Name steht für das, was uns antreibt, Menschen und Unternehmen im Kern zusammenzubringen. „Core“ symbolisiert das Herz jeder Organisation, das Zentrum von Kompetenz, Kultur und Strategie. „Berg“ steht für Stabilität, Orientierung und Weitblick. Werte, die wir in unserer Beratung leben."
+          imageSrc="/images/background3.png"
+          statLabel="Unsere Haltung"
+          statDescription="COREBERG wurde mit der Überzeugung gegründet, dass erfolgreiche Personalberatung auf Vertrauen, Klarheit und unternehmerischem Denken basiert. Wir verbinden Marktverständnis mit einem ausgeprägten Gespür für Menschen und Organisationen."
+          buttonText="Unsere Expertise entdecken"
+        />
       </div>
       <HeroIntro />
       <TabsSection />
