@@ -316,7 +316,16 @@ const StartPage2 = ({
 
             <div className="max-md:static">
               <Link
-                href="/kontakt"
+                href="/kontakt#contact-section"
+                onClick={(e) => {
+                  if (pathname === '/kontakt' || pathname === '/kontakt/') {
+                    const element = document.getElementById('contact-section');
+                    if (element) {
+                      e.preventDefault();
+                      element.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }
+                }}
                 className="group flex items-center gap-3 font-medium text-[#0B1F3B] text-sm font-sans px-1 py-1 rounded-lg w-fit bg-white max-sm:gap-2 transition-all duration-500 hover:scale-[1.03] active:scale-[0.97] shadow-xl hover:shadow-2xl hover:bg-[#F9FAFB] cursor-pointer"
               >
                 <p className="px-4 max-md:px-3 max-sm:text-xs">{buttonText}</p>

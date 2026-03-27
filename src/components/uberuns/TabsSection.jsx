@@ -17,7 +17,7 @@ const tabs = [
         "Strategischer Ansatz statt klassischer Rekrutierung",
         "Langfristiger Unternehmenserfolg im Fokus",
       ],
-      image: "/images/service1.png",
+      image: "/images/service11.png",
     },
   },
   {
@@ -33,7 +33,7 @@ const tabs = [
         "Fokus auf Persönlichkeit, Potenzial und Cultural Fit",
         "Nachhaltiger Talentpool statt kurzfristiger Lösungen",
       ],
-      image: "/images/service2.png",
+      image: "/images/service22.png",
     },
   },
   {
@@ -49,7 +49,7 @@ const tabs = [
         "Agiles Handeln bei sich verändernden Rahmenbedingungen",
         "Qualitätssicherung trotz hoher Dynamik",
       ],
-      image: "/images/service3.png",
+      image: "/images/service33.png",
     },
   },
   {
@@ -65,7 +65,7 @@ const tabs = [
         "Diskrete Prozesse und sensible Kommunikation",
         "Nachhaltige Partnerschaften statt kurzfristiger Lösungen",
       ],
-      image: "/images/service4.png",
+      image: "/images/service44.png",
     },
   },
 ];
@@ -84,10 +84,9 @@ export default function TabsSection() {
               key={index}
               onClick={() => setActiveIndex(index)}
               className={`text-center text-sm font-medium px-4 py-4 transition-colors duration-200 leading-snug
-                ${
-                  activeIndex === index
-                    ? "border-b-2 border-gray-900 text-gray-900"
-                    : "text-gray-400 hover:text-gray-700 border-b-2 border-transparent"
+                ${activeIndex === index
+                  ? "border-b-2 border-gray-900 text-gray-900"
+                  : "text-gray-400 hover:text-gray-700 border-b-2 border-transparent"
                 }`}
             >
               {tab.label}

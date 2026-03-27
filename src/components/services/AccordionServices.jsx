@@ -15,7 +15,7 @@ const services = [
       "Gezielte Ansprache im relevanten Marktumfeld",
       "Nachhaltige Besetzungen für langfristigen Erfolg",
     ],
-    image: "/images/step1.png",
+    image: "/images/step11.png",
     cta: "Kontakt aufnehmen →",
   },
   {
@@ -29,7 +29,7 @@ const services = [
       "Auswahl auf Führungs- und Managementebene",
       "Strategische Begleitung im gesamten Prozess",
     ],
-    image: "/images/step2.png",
+    image: "/images/step22.png",
     cta: "Kontakt aufnehmen →",
   },
   {
@@ -43,7 +43,7 @@ const services = [
       "Unterstützung beim Talentaufbau",
       "Optimierung von Auswahlprozessen",
     ],
-    image: "/images/step3.png",
+    image: "/images/step33.png",
     cta: "Kontakt aufnehmen →",
   },
 ];
@@ -196,11 +196,10 @@ export default function AccordionServices() {
 
             {/* Expanded Content */}
             <div
-              className={`overflow-hidden transition-all duration-500 ease-in-out ${
-                openIndex === index
+              className={`overflow-hidden transition-all duration-500 ease-in-out ${openIndex === index
                   ? "max-h-[1200px] opacity-100 pb-8 md:pb-10"
                   : "max-h-0 opacity-0"
-              }`}
+                }`}
             >
               <div className="flex flex-col md:flex-row gap-8 md:gap-10 items-start md:items-center justify-between pt-2">
                 {/* Left: Text */}

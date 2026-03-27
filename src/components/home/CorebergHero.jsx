@@ -175,11 +175,11 @@ export default function CorebergHero() {
       </div>
 
       {/* Right: Dark content area */}
-      <div className="flex-1 bg-[#0A162C] flex flex-col justify-start py-10 md:py-16 px-5 md:px-12 lg:px-20 pb-8 md:pb-[460px]">
-        <div className="max-w-[900px]">
+      <div className="flex-1 bg-[#0A162C] flex flex-col justify-start py-10 md:py-20 lg:py-28 px-5 md:px-12 lg:px-20 pb-8 md:pb-[380px] lg:pb-[360px] xl:pb-[480px]">
+        <div className="max-w-[700px] xl:max-w-[900px]">
           <ScrollRevealText
             as="h1"
-            className="text-[22px] md:text-[29px] font-light leading-snug mb-5 md:mb-6"
+            className="text-[22px] md:text-[26px] lg:text-[28px] xl:text-[40px] font-light leading-snug mb-5 md:mb-6"
             parts={[
               {
                 text: "Wir haben COREBERG nicht ins Leben gerufen, um das Recruiting neu zu erfinden. Wir haben es gegründet, um die klassischen Tugenden der Personalberatung mit der Agilität der modernen Wirtschaft zu vereinen. ",
@@ -188,7 +188,7 @@ export default function CorebergHero() {
             ]}
           />
 
-          <p className="text-gray-400 text-sm leading-relaxed mb-6 md:mb-8">
+          <p className="text-gray-400 text-sm md:text-base lg:text-base xl:text-lg leading-relaxed mb-6 md:mb-8 lg:max-w-xl">
             Hinter COREBERG stehen Experten, die die massgebenden Stationen der
             modernen Personalgewinnung nicht nur durchlaufen, sondern aktiv
             mitgestaltet haben.
@@ -197,11 +197,17 @@ export default function CorebergHero() {
           {/* CTA Buttons */}
           <div className="flex gap-3 md:gap-4 flex-wrap">
             {pathname !== "/uberuns" && (
-              <Link href="/uberuns" className="flex items-center gap-2 text-[#223140] px-5 md:px-6 py-2.5 md:py-3 text-sm bg-white rounded-sm hover:bg-[#0A162C] hover:text-white hover:border-white border transition-all duration-200 w-fit">
+              <Link
+                href="/uberuns"
+                className="flex items-center gap-2 text-[#223140] px-5 md:px-8 py-2.5 md:py-3.5 text-sm bg-white rounded-sm hover:bg-[#0A162C] hover:text-white hover:border-white border transition-all duration-200 w-fit font-medium"
+              >
                 Warum uns wählen <ArrowRight size={16} />
               </Link>
             )}
-            <Link href="/kontakt" className="bg-[#0A162C] text-white px-5 md:px-6 py-2.5 md:py-3 text-sm hover:bg-white rounded-sm hover:text-[#0A162C] hover:border-[#0A162C] border transition-all duration-200 w-fit">
+            <Link
+              href="/kontakt"
+              className="bg-[#0A162C] text-white px-5 md:px-8 py-2.5 md:py-3.5 text-sm hover:bg-white rounded-sm hover:text-[#0A162C] hover:border-[#0A162C] border transition-all duration-200 w-fit"
+            >
               Kontakt aufnehmen
             </Link>
           </div>
@@ -209,14 +215,14 @@ export default function CorebergHero() {
       </div>
 
       {/* Stat Cards — absolute on desktop, static flow on mobile */}
-      <div className="flex flex-col md:flex-row gap-3 md:gap-4 w-full bg-[#0A162C] md:bg-transparent px-5 md:px-0 pb-8 md:pb-0 md:absolute md:bottom-10 md:left-0 md:right-0 md:container md:mx-auto">
+      <div className="flex flex-col md:flex-row gap-3 md:gap-4 w-full bg-[#0A162C] md:bg-transparent px-5 md:px-5 lg:px-10 xl:px-0 pb-8 md:pb-0 md:absolute md:bottom-10 md:left-0 md:right-0 md:container md:mx-auto">
         {stats.map((stat, i) => (
           <div
             key={i}
             className={`
-              relative w-full md:flex-1 md:min-w-[378px]
-              h-auto md:h-[400px] mt-2
-              p-6 md:p-10
+              relative w-full md:flex-1 md:min-w-[300px] lg:min-w-[300px] xl:min-w-[378px]
+              h-auto md:h-[350px] lg:h-[320px] xl:h-[400px] mt-2
+              p-6 md:p-8 lg:p-8 xl:p-10
               flex flex-col justify-end
               transition-transform duration-300 hover:scale-[0.98] md:hover:scale-[0.92]
               ${stat.cardTheme}
@@ -224,7 +230,7 @@ export default function CorebergHero() {
           >
             <div className="mb-auto">
               <p
-                className={`text-base md:text-[20px] font-medium uppercase tracking-widest ${stat.labelTheme}`}
+                className={`text-base md:text-[18px] lg:text-[18px] xl:text-[20px] font-medium uppercase tracking-widest ${stat.labelTheme}`}
               >
                 {stat.label}
               </p>
@@ -233,15 +239,15 @@ export default function CorebergHero() {
             <div>
               <div className="flex items-end gap-1 mb-4 md:mb-6">
                 <div className="flex flex-row items-center justify-between w-full border-b border-white py-4 md:py-5">
-                  <span className="text-xl font-light opacity-60 mb-4 md:mb-8 block">
+                  <span className="text-xl font-light opacity-60 mb-2 md:mb-5 block">
                     {stat.icon}
                   </span>
                   <div className="flex flex-row items-end justify-between">
-                    <span className="text-[48px] md:text-[64px] leading-none tracking-tighter">
+                    <span className="text-[40px] md:text-[48px] lg:text-[48px] xl:text-[64px] leading-none tracking-tighter">
                       <CountUp end={stat.value} />
                     </span>
                     <span
-                      className={`text-[28px] md:text-[40px] font-light leading-10 mb-2 ${stat.unitTheme}`}
+                      className={`text-[24px] md:text-[28px] lg:text-[28px] xl:text-[40px] font-light leading-10 mb-2 ${stat.unitTheme}`}
                     >
                       {stat.unit}
                     </span>
@@ -249,7 +255,7 @@ export default function CorebergHero() {
                 </div>
               </div>
               <p
-                className={`text-[13px] md:text-[15px] max-w-full md:max-w-[280px] leading-relaxed ${stat.descTheme}`}
+                className={`text-[13px] md:text-[14px] lg:text-[13px] xl:text-[15px] max-w-full md:max-w-[280px] leading-relaxed ${stat.descTheme}`}
               >
                 {stat.description}
               </p>

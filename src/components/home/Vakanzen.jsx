@@ -37,11 +37,11 @@ export default function VakanzenSection() {
   };
 
   return (
-    <section className="container mx-auto px-4 md:px-6 py-12 md:py-16 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 items-center">
+    <section className="container mx-auto px-4 md:px-6 py-12 md:py-16 lg:py-24 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 lg:gap-20 xl:gap-24 items-center overflow-hidden">
       {/* Left: Image */}
-      <div className="relative w-full hidden md:block">
+      <div className="relative w-full hidden md:flex justify-center">
         {/* Large background image */}
-        <div className="w-[511px] h-[763px] relative rounded-2xl overflow-hidden shadow-lg">
+        <div className="relative w-full max-w-[400px] xl:max-w-[511px] aspect-[511/763] rounded-2xl overflow-hidden shadow-lg">
           <Image
             src="/images/maunt.png"
             alt="Matterhorn Background"
@@ -51,7 +51,7 @@ export default function VakanzenSection() {
         </div>
 
         {/* Overlapping foreground image */}
-        <div className="absolute right-15 top-1/2 -translate-y-1/2 w-[289px] h-[434px] rounded-2xl overflow-hidden">
+        <div className="absolute right-0 xl:-right-10 top-1/2 -translate-y-1/2 w-[200px] xl:w-[289px] aspect-[289/434] rounded-2xl overflow-hidden shadow-2xl ">
           <Image
             src="/images/handshake.jpg"
             alt="Personal Handshake"

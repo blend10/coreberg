@@ -56,7 +56,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section className="bg-white py-12 md:py-20 px-4 md:px-16">
+    <section id="contact-section" className="bg-white py-12 md:py-20 px-4 md:px-16">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start md:items-center">
 
         {/* LEFT: Info panel */}

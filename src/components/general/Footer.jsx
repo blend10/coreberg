@@ -122,7 +122,7 @@ export default function Footer() {
                 © {new Date().getFullYear()} COREBERG GmbH
               </p>
               <p className="text-xs text-white">
-                Seite von:{" "}
+                Designed and Development by: <br />
                 <a
                   href="https://syn-tech.ch/"
                   className="underline hover:text-gray-300"
@@ -220,7 +220,7 @@ export default function Footer() {
                 className="flex items-center gap-2 text-[13px] text-white hover:underline transition-colors mt-2"
               >
                 <Image src="/images/linkedin.svg" alt="LinkedIn" width={18} height={18} />
-               Linkedin 
+                Linkedin
               </a>
             </div>
           </div>
