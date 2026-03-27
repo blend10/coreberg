@@ -34,7 +34,7 @@ const StrategicQuote = () => {
               Azir Spahiu
             </h1>
             <h1 className="text-[#42484E] text-[13px] md:text-[15px]">
-              Founder & Managing Partner
+              Der Gründer
             </h1>
             {/* Signature — only show on desktop where space allows */}
             <div className="absolute bottom-0 left-20 w-[171px] h-[67px] hidden md:block">

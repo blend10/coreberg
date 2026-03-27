@@ -4,7 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 
 // ── Scroll Reveal ────────────────────────────────────────────────────────────
-const ScrollRevealText = ({ parts = [], className = "", as: Component = "div" }) => {
+const ScrollRevealText = ({
+  parts = [],
+  className = "",
+  as: Component = "div",
+}) => {
   const containerRef = useRef(null);
   const [progress, setProgress] = useState(0);
 
@@ -108,10 +112,10 @@ const Strategy = () => {
       <div className="flex flex-col items-start mt-10 md:mt-24 md:self-end md:max-w-[50%]">
         <div className="space-y-6">
           <p className="text-[#42484E] font-semibold leading-relaxed">
-            Durch unsere langjährige Erfahrung verstehen wir Personalgewinnung als
-            strategischen Erfolgsfaktor – nicht nur als operativen Prozess. Wir
-            entwickeln kontinuierlich neue Ansätze, um Unternehmen nachhaltig zu
-            stärken.
+            Durch unsere langjährige Erfahrung verstehen wir Personalgewinnung
+            als strategischen Erfolgsfaktor – nicht nur als operativen Prozess.
+            Wir entwickeln kontinuierlich neue Ansätze, um Unternehmen
+            nachhaltig zu stärken.
           </p>
           <p className="text-[#42484E] leading-relaxed ">
             Erfolgreiche Besetzungen entstehen nicht durch Geschwindigkeit,
@@ -119,9 +123,11 @@ const Strategy = () => {
           </p>
         </div>
 
-
         <div className="flex flex-row gap-8 mt-10 items-center">
-          <Link href="/uberuns#tabs-section" className="flex items-center gap-3 bg-[#0B1F3B] px-12 py-4 rounded-xl text-white hover:bg-[#1a2744] transition-all group cursor-pointer font-sans text-sm font-medium whitespace-nowrap shadow-lg hover:shadow-xl translate-y-0 hover:-translate-y-1">
+          <Link
+            href="/uberuns#tabs-section"
+            className="flex items-center gap-3 bg-[#0B1F3B] px-12 py-4 rounded-xl text-white hover:bg-[#1a2744] transition-all group cursor-pointer font-sans text-sm font-medium whitespace-nowrap shadow-lg hover:shadow-xl translate-y-0 hover:-translate-y-1"
+          >
             Mehr lesen
             <svg
               width="18"
@@ -152,9 +158,7 @@ const Strategy = () => {
                 <p className="font-bold text-[#091019] text-base">
                   Azir Spahiu
                 </p>
-                <p className="text-[#42484E] text-sm font-light">
-                  Founder & Managing Partner
-                </p>
+                <p className="text-[#42484E] text-sm font-light">Der Gründer</p>
               </div>
             </div>
           </div>
@@ -165,4 +169,3 @@ const Strategy = () => {
 };
 
 export default Strategy;
-
