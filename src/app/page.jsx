@@ -14,9 +14,16 @@ export default function Home() {
           title="Mensch zu Mensch."
           titleHighlight="Beratung"
           titleSuffix="die verbindet."
-          subheading="Strategische Personalgewinnung"
-          description="In einer dynamischen Arbeitswelt reicht klassische Rekrutierung nicht mehr aus. Wir verstehen Personalgewinnung als strategischen Prozess – für gezielte Besetzungen und nachhaltigen Unternehmenserfolg."
+          subheading="Human Solutions"
+          description="In einem Markt, der sich in Algorithmen und digitalen Versprechen verliert, setzen wir auf das Fundament: Die menschliche Urteilskraft.
+
+Wir arbeiten für Unternehmen, die keine Lebensläufe sammeln, sondern Lösungen realisieren wollen.
+
+Pragmatisch in der Umsetzung, exzellent im Ergebnis."
           buttonText="Jetzt Kontakt Aufnehmen"
+          statNumber="10+"
+          statLabel="Innovativ & Strategisch"
+          statDescription="Die heutige Rekrutierungswelt ist geprägt von technologischem Überfluss. Wir bei COREBERG nutzen Innovation dort, wo sie Prozesse beschleunigt. Unsere Arbeit beginnt dort, wo die Software an ihre Grenzen stösst."
         />
       </div>
       <Strategy />

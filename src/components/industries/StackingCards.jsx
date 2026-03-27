@@ -1,55 +1,63 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const industries = [
   {
     number: "01",
     label: "Engineering & Manufacturing",
     description:
-      "Im Bereich Engineering & Manufacturing unterstützt COREBERG Unternehmen bei der Suche nach Talenten, die technische Exzellenz mit unternehmerischem Denken verbinden.",
+      "In Engineering & Manufacturing unterstützt COREBERG Unternehmen gezielt bei der Gewinnung von Fach- und Führungskräften, die Produktionsprozesse optimieren, Innovationen vorantreiben und technische Exzellenz sicherstellen. Wir verstehen die Anforderungen dieser Branche und identifizieren Talente, die sowohl fachlich als auch strategisch zum Unternehmenserfolg beitragen.",
     detail:
-      "Passive Kandidaten sprechen wir gezielt an, um Unternehmen die besten verfügbaren Talente zu sichern. Mit strukturierten Prozessen gewinnen wir Fachkräfte, die langfristig Wachstum fördern.",
+      "Durch unser Netzwerk erreichen wir auch passive Kandidaten, die aktiv wertvolle Impulse für Projekte und Prozesse liefern. Unsere Beratung geht über die reine Besetzung hinaus: Wir unterstützen bei Nachfolgeplanung, Talentpools und strategischer Personalentwicklung, sodass Unternehmen langfristig ihre Innovationskraft und Wettbewerbsfähigkeit sichern.",
   },
   {
     number: "02",
-    label: "Finance & Controlling",
+    label: "IT & Digital Excellence",
     description:
-      "Im Finance & Controlling Bereich vermitteln wir erfahrene Fach- und Führungskräfte, die komplexe Finanzstrukturen verstehen und strategisch agieren können.",
+      "Im Bereich IT & Digital Excellence begleitet COREBERG Unternehmen bei der Rekrutierung von Spezialisten, die digitale Transformationsprozesse vorantreiben und innovative Technologien umsetzen. Wir identifizieren Talente, die sowohl technisches Know-how als auch strategisches Denken vereinen, und sprechen auch passive Kandidaten direkt an.",
     detail:
-      "Von CFO-Besetzungen bis hin zu spezialisierten Controlling-Profilen – wir liefern Kandidaten mit der nötigen Tiefe und Marktkenntnis.",
+      "Unser Ansatz unterstützt Unternehmen, schnell auf Marktveränderungen zu reagieren, digitale Projekte effizient umzusetzen und die passenden Kompetenzen im Team zu stärken. Neben der Besetzung von Vakanzen beraten wir strategisch zu Talentpools, Nachfolgeplanung und langfristiger Personalentwicklung. Mit COREBERG gewinnen Unternehmen in IT & Digital Excellence Fachkräfte, die nachhaltigen Mehrwert schaffen und Transformation erfolgreich gestalten.",
   },
   {
     number: "03",
-    label: "Administration",
+    label: "Finance & Controlling",
     description:
-      "Effiziente Administrative Strukturen sind das Rückgrat jedes Unternehmens. Wir besetzen Positionen, die Prozesse am Laufen halten und Organisationen stabil machen.",
+      "COREBERG unterstützt Unternehmen in Finance & Controlling bei der Gewinnung von Fachkräften, die Zahlen präzise analysieren, Prozesse optimieren und finanzielle Transparenz sicherstellen. Wir identifizieren Kandidaten mit analytischem Denken, strategischem Verständnis und hoher Umsetzungsstärke.",
     detail:
-      "Wir verstehen die Anforderungen moderner Verwaltungsrollen und liefern Profile, die sowohl fachlich als auch kulturell überzeugen.",
+      "Unser Ansatz unterstützt Unternehmen, schnell auf Marktveränderungen zu reagieren, digitale Projekte effizient umzusetzen und die passenden Kompetenzen im Team zu stärken. Neben der Besetzung von Vakanzen beraten wir strategisch zu Talentpools, Nachfolgeplanung und langfristiger Personalentwicklung. Mit COREBERG gewinnen Unternehmen in IT & Digital Excellence Fachkräfte, die nachhaltigen Mehrwert schaffen und Transformation erfolgreich gestalten.",
   },
   {
     number: "04",
-    label: "Banking & Insurance",
+    label: "Administration",
     description:
-      "Im stark regulierten Umfeld von Banking & Insurance vermitteln wir Talente mit tiefem Branchenwissen und regulatorischem Verständnis.",
+      "Im Bereich Administration unterstützt COREBERG Unternehmen bei der Suche nach Talenten, die organisatorische Abläufe optimieren, Prozesse effizient gestalten und Teams professionell koordinieren.",
     detail:
-      "Von Compliance über Risk Management bis hin zu Vertriebsführung – wir finden die richtigen Persönlichkeiten für anspruchsvolle Mandate.",
+      "Wir identifizieren Fachkräfte, die Struktur, Organisationstalent und Kommunikationsstärke verbinden. Unser Fokus liegt auf Kandidaten, die das Tagesgeschäft zuverlässig meistern und gleichzeitig strategische Impulse geben können. Durch direkte Ansprache und Netzwerkzugang sichern wir die passenden Talente, auch wenn sie nicht aktiv auf Stellensuche sind. Mit COREBERG profitieren Unternehmen von Diskretion, Effizienz und einer langfristigen Personalplanung, die den reibungslosen Ablauf der administrativen Funktionen sicherstellt",
   },
   {
     number: "05",
+    label: "Banking & Insurance",
+    description:
+      "COREBERG begleitet Unternehmen in Banking & Insurance bei der Gewinnung von Fach- und Führungskräften, die regulatorische Anforderungen verstehen, Risiken einschätzen und Prozesse effizient steuern.",
+    detail:
+      "Wir identifizieren Talente mit branchenspezifischem Know-how, analytischem Denken und hoher Integrität. Unser Netzwerk ermöglicht es, auch passive Kandidaten zu erreichen, die strategische Impulse liefern und langfristig Verantwortung übernehmen. Neben der Besetzung offener Vakanzen beraten wir zu Talentpools, Nachfolgeplanung und strategischer Personalentwicklung. Mit COREBERG sichern sich Unternehmen in Banking & Insurance kompetente Fachkräfte, die Stabilität, Compliance und nachhaltigen Geschäftserfolg gewährleisten..",
+  },
+  {
+    number: "06",
     label: "Sales & Marketing",
     description:
-      "Im Bereich Sales & Marketing unterstützt COREBERG Unternehmen bei der Suche nach Talenten, die Märkte entwickeln und Umsatz nachhaltig steigern.",
+      "Im Bereich Sales & Marketing unterstützt COREBERG Unternehmen bei der Suche nach Talenten, die Marken aufbauen, Märkte entwickeln und Umsatz nachhaltig steigern. Wir identifizieren Kandidaten mit strategischem Denken, Kreativität und ausgeprägter Kommunikationsfähigkeit, die Teams motivieren und erfolgreich führen.",
     detail:
-      "Mit COREBERG gewinnen Unternehmen Fachkräfte, die langfristig Wachstum fördern, Marken stärken und Wettbewerbsvorteile sichern.",
+      "Auch passive Kandidaten sprechen wir gezielt an, um Unternehmen die besten verfügbaren Talente zu sichern. Neben der Besetzung offener Vakanzen beraten wir zu Talententwicklung, Nachfolgeplanung und strategischer Personalstrategie. Mit COREBERG gewinnen Unternehmen in Sales & Marketing Fachkräfte, die langfristig Wachstum fördern, Marken stärken und Wettbewerbsvorteile sichern.",
   },
 ];
 
 export default function StackingCards() {
   return (
-    <div className="bg-[#0A162C]">
+    <div id="stacking-cards" className="bg-[#0A162C]">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2">
-
         {/* LEFT: Static on mobile, sticky on desktop */}
         <div className="md:sticky md:top-0 md:h-screen text-white p-6 md:p-12 flex flex-col justify-center gap-5 md:gap-6 pt-10 md:pt-12">
           <h2 className="text-[26px] md:text-[40px] leading-snug">
@@ -57,17 +65,28 @@ export default function StackingCards() {
             Präzision.
           </h2>
           <p className="text-[15px] md:text-[17px] text-[#B1B9C1] leading-relaxed">
-            COREBERG unterstützt Unternehmen in unterschiedlichen Branchen
-            dabei, Schlüsselpositionen gezielt zu besetzen – mit fundierter
-            Marktkenntnis, strukturierten Prozessen und einem klaren Fokus auf
-            Qualität und langfristigen Erfolg.
+            Bei COREBERG steht die Qualität der Kandidaten immer an erster
+            Stelle. Wir liefern keine endlosen Listen, sondern sorgfältig
+            ausgewählte Profile, die Ihren Anforderungen entsprechen. Jede
+            Empfehlung ist das Ergebnis eines strukturierten Auswahlprozesses,
+            persönlicher Gespräche und fundierter Beurteilungen.
           </p>
-          <a
-            href="#"
+          <p className="text-[15px] md:text-[16px] text-[#B1B9C1] leading-relaxed">
+            Wir prüfen fachliche Qualifikationen, Erfahrungen, Erfolge, aber
+            auch Motivation, Persönlichkeit und kulturelle Passung. Unser Ziel
+            ist es, Kandidaten zu präsentieren, die nicht nur die erforderlichen
+            Skills mitbringen, sondern auch das Potenzial haben, sich
+            langfristig in Ihrem Unternehmen zu entwickeln. Diskretion ist dabei
+            selbstverständlich. Insbesondere bei leitenden Positionen ist ein
+            sensibles Vorgehen entscheidend, um sowohl Kandidaten als auch
+            Unternehmen zu schützen.
+          </p>
+          <Link
+            href="/kontakt"
             className="inline-flex items-center gap-2 text-sm font-semibold text-[#0f1a2e] rounded-lg border border-white/30 px-7 py-2.5 w-fit bg-white hover:bg-[#0f1a2e] hover:text-white transition-all duration-200"
           >
             Kontakt aufnehmen →
-          </a>
+          </Link>
           <ul className="flex flex-col gap-3 mt-2">
             {[
               "Zugang zu qualifizierten Fach- und \nFührungskräften",
@@ -121,22 +140,24 @@ export default function StackingCards() {
                   </div>
                   {/* Text */}
                   <div className="flex flex-col gap-3 md:flex-1 md:max-w-[50%]">
-                    <p className="text-[14px] md:text-[16px] text-[#42484E] leading-relaxed">
+                    <p className="text-[10px] md:text-[14px] text-[#42484E] leading-relaxed">
                       {service.description}
                     </p>
-                    <p className="text-[14px] md:text-[16px] text-[#42484E] leading-relaxed">
+                    <p className="text-[10px] md:text-[14px] text-[#42484E] leading-relaxed">
                       {service.detail}
                     </p>
                   </div>
                 </div>
 
                 {/* Bottom bar */}
-                <div className="w-full  h-[28px] md:h-[40px] bg-[#B1B9C1] mt-2" style={{ width: "calc(100% + 2.5rem)" }} />
+                <div
+                  className="w-full  h-[28px] md:h-[40px] bg-[#B1B9C1] mt-2"
+                  style={{ width: "calc(100% + 2.5rem)" }}
+                />
               </div>
             </div>
           ))}
         </div>
-
       </div>
     </div>
   );

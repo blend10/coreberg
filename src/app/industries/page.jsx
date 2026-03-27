@@ -1,8 +1,10 @@
 import StartPage from "@/components/general/StartPage";
 import React from "react";
-import VakanzenSection from "@/components/home/Vakanzen";
-import StrategicQuote from "@/components/services/StrategicQuote";
+import VakanzenSection2 from "@/components/industries/VakanzenSection2";
+// import StrategicQuote from "@/components/services/StrategicQuote";
 import StackingCards from "@/components/industries/StackingCards";
+import Strategische from "@/components/industries/Strategische";
+import CorebergHero from "@/components/home/CorebergHero";
 
 const page = () => {
   return (
@@ -13,16 +15,19 @@ const page = () => {
           titleHighlight="Expertise"
           titleSuffix=""
           subheading="Ganzheitlicher Recruiting-Ansatz"
-          imageSrc="/images/background3.png"
+          imageSrc="/images/background4.png"
           description="Professional & Executive Search ist mehr als klassische Rekrutierung – es ist ein strategischer Prozess zur gezielten Besetzung von Schlüsselpositionen. Jede Vakanz beeinflusst Wachstum, Kultur und Innovationskraft. Deshalb arbeiten wir präzise, diskret und mit klarem Fokus auf nachhaltigen Unternehmenserfolg."
-          statLabel="Unser Ansatz"
-          statDescription="Jede Zusammenarbeit beginnt mit einer präzisen Analyse von Anforderungen und Kontext. So entsteht die Grundlage für gezielte Besetzungen und nachhaltige Entscheidungen."
-          buttonText="Branchen entdecken"
+          statLabel="Branchenspezialisiert"
+          statDescription="Mit COREBERG gewinnen Unternehmen einen Partner, der Talente gezielt identifiziert, Prozesse effizient gestaltet und strategische Beratung bietet. Wir sorgen für Qualität, Diskretion und nachhaltige Lösungen, die langfristig den Unternehmenserfolg sichern."
+          buttonText="Jetzt Kontakt aufnehmen"
+          statNumber="6+"
         />
       </div>
-      <VakanzenSection />
+      <VakanzenSection2 />
       <StackingCards />
-      <StrategicQuote />
+      <Strategische />
+      <CorebergHero />
+      {/* <StrategicQuote /> */}
     </div>
   );
 };

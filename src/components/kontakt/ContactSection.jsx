@@ -97,7 +97,7 @@ export default function ContactSection() {
 
           {/* Contact buttons */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-2">
-            <a
+            {/* <a
               href="tel:+41415472140"
               className="flex flex-col gap-3 bg-[#FFFFFF33] border border-gray-200 rounded-lg p-4 hover:border-gray-400 transition-colors"
             >
@@ -113,7 +113,7 @@ export default function ContactSection() {
                 </p>
                 <p className="text-sm text-[#6C6C6C]">+61 415 472 140</p>
               </div>
-            </a>
+            </a> */}
             <a
               href="mailto:info@coreberg.ch"
               className="flex flex-col gap-3 bg-[#FFFFFF33] border border-gray-200 rounded-lg p-4 hover:border-gray-400 transition-colors"

@@ -1,25 +1,26 @@
 import React from "react";
+import Link from "next/link";
 
 const competencies = [
   {
     title: "Engineering & Manufacturing",
     description:
-      "Im Engineering & Manufacturing unterstützt COMBERIQ Unternehmen bei der Optimierung von Produktionsprozessen, der Digitalisierung der Fertigung sowie bei der technischen Exzellenz und innovativen Lösungen.",
+      "In Engineering & Manufacturing unterstützt COREBERG Unternehmen gezielt bei der Gewinnung von Fach- und Führungskräften, die Produktionsprozesse optimieren, Innovationen vorantreiben und technische Exzellenz sicherstellen",
   },
   {
     title: "Banking & Insurance",
     description:
-      "COMBERIQ begleitet Unternehmen in Banking & Insurance bei der Umsetzung von Fach- und Führungsaufgaben, die regulatorische Anforderungen sicher verstehen, Kundenschnittstellen und Prozesse effizienter gestalten.",
+      "COREBERG begleitet Unternehmen in Banking & Insurance bei der Gewinnung von Fach- und Führungskräften, die regulatorische Anforderungen verstehen, Risiken einschätzen und Prozesse effizient steuern.",
   },
   {
     title: "IT & Digital Excellence",
     description:
-      "Im Bereich IT & Digital Excellence begleitet COMBERIQ Unternehmen gezielt bei der Umsetzung von Digitalisierungs- und Business Transformation Vorhaben und setzt auf innovative Technologien und Lösungen.",
+      "Im Bereich IT & Digital Excellence begleitet COREBERG Unternehmen bei der Rekrutierung von Spezialisten, die digitale Transformationsprozesse vorantreiben und innovative Technologien umsetzen.",
   },
   {
-    title: "Administration",
+    title: "Sales and Marketing",
     description:
-      "Im Bereich Administration unterstützt COMBERIQ Unternehmen dabei, die Suche nach Talenten, die organisatorischen Abläufe zu optimieren, Prozesse effizienter zu gestalten und Teams gezielt weiterzuentwickeln.",
+      "Im Bereich Sales & Marketing unterstützt COREBERG Unternehmen bei der Suche nach Talenten, die Marken aufbauen, Märkte entwickeln und Umsatz nachhaltig steigern.",
   },
 ];
 
@@ -27,7 +28,6 @@ export default function TrustedPartner() {
   return (
     <section className="bg-white md:bg-[linear-gradient(to_left,#EEF1F3_58%,#ffffff_58%)] py-12 md:py-20 px-4 md:px-16">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-5 items-center">
-        
         {/* Left: Intro */}
         <div className="flex flex-col gap-6 md:gap-10">
           <p className="text-[28px] md:text-[32px] font-semibold text-[#0A162C]">
@@ -43,12 +43,12 @@ export default function TrustedPartner() {
             die langfristig den Unternehmenserfolg sichern.
           </p>
           <div>
-            <a
-              href="#"
+            <Link
+              href="/industries#stacking-cards"
               className="inline-flex items-center gap-2 bg-[#223140] text-white px-8 rounded-lg py-2.5 hover:bg-gray-800 hover:text-white transition-all duration-200"
             >
               Mehr erfahren →
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -77,7 +77,6 @@ export default function TrustedPartner() {
             ))}
           </div>
         </div>
-
       </div>
     </section>
   );

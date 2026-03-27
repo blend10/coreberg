@@ -70,7 +70,9 @@ export default function Footer() {
                   />
                 </div>
                 <div className="flex flex-col gap-1">
-                  <label className="text-xs text-[#42484E]">E-Mail-Adresse</label>
+                  <label className="text-xs text-[#42484E]">
+                    E-Mail-Adresse
+                  </label>
                   <input
                     type="email"
                     className="bg-transparent border-b border-[#42484E] text-sm text-[#0A162C] py-2 outline-none focus:border-[#42484E] transition-colors placeholder-gray-500"
@@ -105,7 +107,7 @@ export default function Footer() {
 
         {/* Footer Links */}
         <div className="container mx-auto px-6 py-12 md:py-20">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-10">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 md:gap-10">
             {/* Brand — full width on smallest screens */}
             <div className="col-span-2 md:col-span-1 flex flex-col gap-4">
               <div className="flex items-center gap-2">
@@ -140,8 +142,28 @@ export default function Footer() {
                 { label: "Über uns", href: "/uberuns" },
                 { label: "Dienstleistungen", href: "/dienstleistungen" },
                 { label: "Kontakt", href: "/kontakt" },
+              ].map((link) => (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className="text-[13px] text-white hover:underline transition-colors"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+
+            {/* Rechtliches */}
+            <div className="flex flex-col gap-3">
+              <p className="tracking-widest text-[#D8D8D8] uppercase text-xs md:text-sm">
+                Rechtliches
+              </p>
+              {[
                 { label: "Impressum", href: "/impressum" },
-                { label: "Datenschutzerklärung", href: "/vertraulichkeits-und-datenschutzerklaerung" },
+                {
+                  label: "Datenschutzerklärung",
+                  href: "/vertraulichkeits-und-datenschutzerklaerung",
+                },
               ].map((link) => (
                 <Link
                   key={link.label}
@@ -158,11 +180,20 @@ export default function Footer() {
               <p className="tracking-widest text-[#D8D8D8] uppercase text-xs md:text-sm">
                 Adresse
               </p>
-              <p className="text-[13px] text-white leading-relaxed">
+              <a
+                href="https://www.google.com/maps/place/M%C3%BChlebachhof+8,+8852+Altendorf,+Switzerland/@47.1936444,8.8202626,851m/data=!3m2!1e3!4b1!4m6!3m5!1s0x479ab6846c9dc68d:0x90909e9c6c9566a8!8m2!3d47.1936444!4d8.8202626!16s%2Fg%2F11kj3g_zqd?entry=ttu&g_ep=EgoyMDI2MDMyMy4xIKXMDSoASAFQAw%3D%3D"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[13px] text-white leading-relaxed block hover:underline transition-colors w-fit"
+              >
+                COREBERG GmbH
+                <br />
                 Talestrasse 24C
                 <br />
-                8962 Altendorf CH
-              </p>
+                8852 Altendorf
+                <br />
+                Schweiz
+              </a>
             </div>
 
             {/* Kontakt */}
@@ -170,12 +201,12 @@ export default function Footer() {
               <p className="tracking-widest text-[#D8D8D8] uppercase text-xs md:text-sm">
                 Kontakt
               </p>
-              <a
+              {/* <a
                 href="tel:+41415473140"
                 className="text-[13px] text-white hover:underline transition-colors"
               >
                 +41 415 473 140
-              </a>
+              </a> */}
               <a
                 href="mailto:info@coreberg.ch"
                 className="text-[13px] text-white hover:underline transition-colors"
@@ -186,9 +217,10 @@ export default function Footer() {
                 href="https://www.linkedin.com/company/coreberg/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[13px] text-white hover:underline transition-colors break-all"
+                className="flex items-center gap-2 text-[13px] text-white hover:underline transition-colors mt-2"
               >
-                linkedin.com/company/coreberg
+                <Image src="/images/linkedin.svg" alt="LinkedIn" width={18} height={18} />
+               Linkedin 
               </a>
             </div>
           </div>

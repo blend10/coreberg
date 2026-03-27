@@ -23,8 +23,9 @@ export default function RootLayout({ children }) {
     <html
       lang="de"
       className={`${montserrat.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col font-sans selection:bg-[#0A162C] selection:text-white">
+      <body className="min-h-full flex flex-col font-sans selection:bg-[#0A162C] selection:text-white" suppressHydrationWarning>
         <main className="flex-grow">{children}</main>
         <Footer />
         <ScrollToTop />

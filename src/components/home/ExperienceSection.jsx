@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const services = [
   {
@@ -19,12 +20,8 @@ const services = [
   {
     title: "Talent Advisory",
     description:
-      "Strategische Beratung rund um Talent und Organisation. Wir begleiten Sie bei der Entwicklung zukunftsfähiger Strukturen und Teams.",
-  },
-  {
-    title: "Interim Management",
-    description:
-      "Schnelle Besetzung von Führungslücken mit erfahrenen Interim-Managern. Flexibel, kompetent und sofort einsatzbereit.",
+      "Mehr als reine Personalvermittlung. Es ist ein strategischer Ansatz, der Unternehmen dabei unterstützt, ihre Talentstrategie zu optimieren, zukünftige Personalbedarfe vorherzusehen und gezielt auf Marktveränderungen zu reagieren",
+    image: "/images/search3.svg",
   },
 ];
 
@@ -89,8 +86,7 @@ export default function ExperienceSection() {
           Strength at the Core of Talent.
         </p>
         <h2 className="text-2xl md:text-[42px] font-semibold leading-tight">
-          Erfahrung ist durch nichts zu{" "}
-          <br className="hidden md:block" /> ersetzen
+          Unsere Expertise
         </h2>
       </div>
 
@@ -100,30 +96,23 @@ export default function ExperienceSection() {
       {/* Bottom grid: left text + draggable cards */}
       <div className="flex flex-col md:flex-row gap-8 md:gap-10 container mx-auto">
         {/* Left text block */}
-        <div className="w-full md:w-1/2 flex flex-col gap-6 md:gap-10 items-start justify-between">
+        <div className="w-full md:w-[40%] flex flex-col gap-6 md:gap-10 items-start justify-between">
           <p className="text-base md:text-lg text-white leading-relaxed">
-            Die heutige Rekrutierungswelt ist geprägt von{" "}
-            <br className="hidden md:block" />
-            technologischem Überfluss. Wir bei COREBERG{" "}
-            <br className="hidden md:block" />
-            nutzen Innovation dort, wo sie Prozesse beschleunigt.{" "}
-            <br className="hidden md:block" />
-            Unsere Arbeit beginnt dort, wo die Software an ihre
-            Grenzen stösst.
+            Die Zusammenarbeit mit COREBERG steht für Vertrauen und Diskretion.
+            Wir verstehen uns nicht als reine Dienstleister, sondern als
+            strategische Partner. Unser Netzwerk, unsere Erfahrung und unsere
+            Marktkenntnis ermöglichen es, auch schwierige Positionen erfolgreich
+            zu besetzen.
           </p>
           <p className="text-base md:text-lg text-[#B1B9C1] leading-relaxed">
-            Wir präsentieren Ihnen keine Auswahl von fünfzig{" "}
-            <br className="hidden md:block" />
-            Dossiers. Wir präsentieren Ihnen die Lösung. Unsere{" "}
-            <br className="hidden md:block" />
-            Klienten schätzen uns für eine Arbeitsweise, die auf
-            Aufrichtigkeit und tiefer{" "}
-            <br className="hidden md:block" />
-            Marktkenntnis fusst.
+            Wir arbeiten eng mit Unternehmen zusammen, um die Anforderungen der
+            Position zu verstehen, die Unternehmenskultur zu erfassen und die
+            Schlüsselkompetenzen zu definieren. Dabei geht es nicht nur um
+            fachliche Qualifikationen.  
           </p>
-          <button className="mt-2 md:mt-4 bg-white text-[#0d1b2a] rounded-lg border border-white text-sm px-5 py-2.5 flex items-center gap-2 hover:bg-transparent hover:text-white transition-colors duration-200">
+          <Link href="/dienstleistungen#accordion-services" className="mt-2 md:mt-4 bg-white text-[#0d1b2a] rounded-lg border border-white text-sm px-5 py-2.5 flex items-center gap-2 hover:bg-transparent hover:text-white transition-colors duration-200 w-fit">
             Beratung anfragen <span>→</span>
-          </button>
+          </Link>
         </div>
 
         {/* Draggable / swipeable cards */}
@@ -140,7 +129,7 @@ export default function ExperienceSection() {
           {services.map((service, index) => (
             <div
               key={index}
-              className="w-[80vw] sm:w-[340px] md:w-[510px] h-auto md:h-[410px] border border-white/15 bg-[#0A162C] hover:bg-[#2C3F51] p-5 md:p-7 flex flex-col justify-between gap-6 md:gap-8 shrink-0"
+              className="group w-[80vw] sm:w-[340px] md:w-[510px] h-auto md:h-[410px] border border-white/15 bg-[#0A162C] hover:bg-[#2C3F51] p-5 md:p-7 flex flex-col justify-between gap-6 md:gap-8 shrink-0 transition-colors duration-300"
             >
               <div className="space-y-3 md:space-y-4">
                 <h3 className="text-[20px] md:text-[24px] font-semibold text-white">
@@ -164,7 +153,7 @@ export default function ExperienceSection() {
                     <div className="w-full h-full bg-white rounded-full" />
                   )}
                 </div>
-                <button className="w-9 h-9 md:w-10 md:h-10 rounded-full bg-white text-[#0d1b2a] flex items-center justify-center hover:bg-white/80 transition">
+                <button className="w-9 h-9 md:w-10 md:h-10 rounded-full bg-[#223140] text-white flex items-center justify-center group-hover:bg-white group-hover:text-black group-hover:scale-110 md:hover:scale-175 transition-all duration-300">
                   →
                 </button>
               </div>

@@ -90,14 +90,14 @@ const services = [
     title: "Vakanzen nachhaltig und gezielt besetzen",
     description:
       "In der heutigen Arbeitswelt stehen Unternehmen vor komplexen Herausforderungen. Märkte verändern sich schneller, technologische Innovationen verschieben Geschäftsmodelle und die Ansprüche von Fach- und Führungskräften entwickeln sich ständig weiter. Wer Schlüsselpositionen mit den richtigen Talenten besetzen will, muss mehr tun als klassische Stellenausschreibungen aufzugeben oder auf Empfehlungen zu hoffen.",
-    image: "/images/service-1.jpg",
+    image: "/images/service11.png",
   },
   {
     number: "02.",
     title: "Individuelle Strategie für jedes Mandat",
     description:
       "Jedes Mandat beginnt mit einer präzisen Analyse. Wir arbeiten eng mit Ihnen zusammen, um die Anforderungen der Position zu verstehen, die Unternehmenskultur zu erfassen und die Schlüsselkompetenzen zu definieren. Dabei geht es nicht nur um fachliche Qualifikationen. Soft Skills, Führungsstil, Motivation und langfristige Entwicklungsperspektiven sind entscheidend für den nachhaltigen Erfolg einer Besetzung.",
-    image: "/images/service-2.jpg",
+    image: "/images/service22.png",
   },
   {
     number: "03.",
@@ -105,7 +105,7 @@ const services = [
 
     description:
       "Ein weiterer zentraler Vorteil unserer Arbeit ist die Flexibilität. Wir passen unsere Dienstleistungen an Ihre spezifischen Bedürfnisse an. Ob punktuelle Unterstützung bei einer kritischen Vakanz, langfristige Begleitung über mehrere Positionen oder strategische Beratung für den gesamten Talentbereich: coreberg bietet Lösungen, die genau auf Ihre Situation zugeschnitten sind.",
-    image: "/images/service-3.jpg",
+    image: "/images/service33.png",
   },
 ];
 

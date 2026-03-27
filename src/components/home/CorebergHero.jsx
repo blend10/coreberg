@@ -1,7 +1,9 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const CountUp = ({ end, duration = 2000 }) => {
   const [count, setCount] = useState(0);
@@ -58,14 +60,100 @@ const stats = [
   },
 ];
 
+// ── Scroll Reveal ────────────────────────────────────────────────────────────
+const ScrollRevealText = ({
+  parts = [],
+  className = "",
+  as: Component = "div",
+}) => {
+  const containerRef = useRef(null);
+  const [progress, setProgress] = useState(0);
+
+  // Flatten all parts into one string to calculate total chars
+  const fullText = parts.map((p) => p.text).join("");
+  const totalChars = fullText.length;
+
+  useEffect(() => {
+    let rafId = null;
+
+    const handleScroll = () => {
+      if (rafId) return;
+      rafId = requestAnimationFrame(() => {
+        if (!containerRef.current) {
+          rafId = null;
+          return;
+        }
+
+        const { top } = containerRef.current.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+
+        const start = windowHeight * 0.9;
+        const end = windowHeight * 0.2;
+
+        let p = (start - top) / (start - end);
+        if (p < 0) p = 0;
+        if (p > 1) p = 1;
+
+        setProgress(p);
+        rafId = null;
+      });
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
+  }, []);
+
+  let runningCharCount = 0;
+
+  return (
+    <Component ref={containerRef} className={className}>
+      {parts.map((part, partIdx) => {
+        const chars = part.text.split("");
+
+        const renderedPart = (
+          <span key={partIdx} className={part.className || ""}>
+            {chars.map((char, i) => {
+              const currentCharIndex = runningCharCount + i;
+              const charThreshold = currentCharIndex / totalChars;
+              const isVisible = progress > charThreshold;
+
+              return (
+                <span
+                  key={i}
+                  className="transition-colors duration-100"
+                  style={{
+                    color: isVisible
+                      ? part.activeColor || "#ffffff"
+                      : "rgba(255,255,255,0.25)",
+                  }}
+                >
+                  {char}
+                </span>
+              );
+            })}
+          </span>
+        );
+
+        runningCharCount += chars.length;
+        return renderedPart;
+      })}
+    </Component>
+  );
+};
+
 export default function CorebergHero() {
+  const pathname = usePathname();
+
   return (
     <section className="relative w-full flex flex-col md:flex-row md:min-h-screen">
-      
       {/* Left: Team Image — hidden on mobile, shown on md+ */}
       <div className="hidden md:block md:w-[38%] relative">
         <Image
-          src="/images/leftPart.jpg"
+          src="/images/leftone.png"
           alt="Coreberg Team"
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 38vw"
@@ -76,7 +164,7 @@ export default function CorebergHero() {
       {/* Mobile-only hero image */}
       <div className="relative w-full h-[260px] md:hidden">
         <Image
-          src="/images/leftPart.jpg"
+          src="/images/leftone.png"
           alt="Coreberg Team"
           fill
           className="object-cover object-center"
@@ -89,14 +177,16 @@ export default function CorebergHero() {
       {/* Right: Dark content area */}
       <div className="flex-1 bg-[#0A162C] flex flex-col justify-start py-10 md:py-16 px-5 md:px-12 lg:px-20 pb-8 md:pb-[460px]">
         <div className="max-w-[900px]">
-          <h1 className="text-white text-[22px] md:text-[29px] font-light leading-snug mb-5 md:mb-6">
-            Wir haben COREBERG nicht ins Leben gerufen, um das Recruiting{" "}
-            <span className="font-semibold">
-              neu zu erfinden. Wir haben es gegründet, um die klassischen
-              Tugenden der Personalberatung mit der Agilität der modernen
-              Wirtschaft zu vereinen.
-            </span>
-          </h1>
+          <ScrollRevealText
+            as="h1"
+            className="text-[22px] md:text-[29px] font-light leading-snug mb-5 md:mb-6"
+            parts={[
+              {
+                text: "Wir haben COREBERG nicht ins Leben gerufen, um das Recruiting neu zu erfinden. Wir haben es gegründet, um die klassischen Tugenden der Personalberatung mit der Agilität der modernen Wirtschaft zu vereinen. ",
+                activeColor: "#ffffff",
+              },
+            ]}
+          />
 
           <p className="text-gray-400 text-sm leading-relaxed mb-6 md:mb-8">
             Hinter COREBERG stehen Experten, die die massgebenden Stationen der
@@ -106,25 +196,20 @@ export default function CorebergHero() {
 
           {/* CTA Buttons */}
           <div className="flex gap-3 md:gap-4 flex-wrap">
-            <button className="flex items-center gap-2 text-[#223140] px-5 md:px-6 py-2.5 md:py-3 text-sm bg-white rounded-sm hover:bg-[#0A162C] hover:text-white hover:border-white border transition-all duration-200">
-              Warum uns wählen <ArrowRight size={16} />
-            </button>
-            <button className="bg-[#0A162C] text-white px-5 md:px-6 py-2.5 md:py-3 text-sm hover:bg-white rounded-sm hover:text-[#0A162C] hover:border-[#0A162C] border transition-all duration-200">
+            {pathname !== "/uberuns" && (
+              <Link href="/uberuns" className="flex items-center gap-2 text-[#223140] px-5 md:px-6 py-2.5 md:py-3 text-sm bg-white rounded-sm hover:bg-[#0A162C] hover:text-white hover:border-white border transition-all duration-200 w-fit">
+                Warum uns wählen <ArrowRight size={16} />
+              </Link>
+            )}
+            <Link href="/kontakt" className="bg-[#0A162C] text-white px-5 md:px-6 py-2.5 md:py-3 text-sm hover:bg-white rounded-sm hover:text-[#0A162C] hover:border-[#0A162C] border transition-all duration-200 w-fit">
               Kontakt aufnehmen
-            </button>
+            </Link>
           </div>
         </div>
       </div>
 
       {/* Stat Cards — absolute on desktop, static flow on mobile */}
-      <div className="
-        flex flex-col md:flex-row gap-3 md:gap-4
-        w-full
-        bg-[#0A162C] md:bg-transparent
-        px-5 md:px-0
-        pb-8 md:pb-0
-        md:absolute md:bottom-10 md:left-0 md:right-0 md:container md:mx-auto
-      ">
+      <div className="flex flex-col md:flex-row gap-3 md:gap-4 w-full bg-[#0A162C] md:bg-transparent px-5 md:px-0 pb-8 md:pb-0 md:absolute md:bottom-10 md:left-0 md:right-0 md:container md:mx-auto">
         {stats.map((stat, i) => (
           <div
             key={i}
@@ -138,7 +223,9 @@ export default function CorebergHero() {
             `}
           >
             <div className="mb-auto">
-              <p className={`text-base md:text-[20px] font-medium uppercase tracking-widest ${stat.labelTheme}`}>
+              <p
+                className={`text-base md:text-[20px] font-medium uppercase tracking-widest ${stat.labelTheme}`}
+              >
                 {stat.label}
               </p>
             </div>
@@ -153,13 +240,17 @@ export default function CorebergHero() {
                     <span className="text-[48px] md:text-[64px] leading-none tracking-tighter">
                       <CountUp end={stat.value} />
                     </span>
-                    <span className={`text-[28px] md:text-[40px] font-light leading-10 mb-2 ${stat.unitTheme}`}>
+                    <span
+                      className={`text-[28px] md:text-[40px] font-light leading-10 mb-2 ${stat.unitTheme}`}
+                    >
                       {stat.unit}
                     </span>
                   </div>
                 </div>
               </div>
-              <p className={`text-[13px] md:text-[15px] max-w-full md:max-w-[280px] leading-relaxed ${stat.descTheme}`}>
+              <p
+                className={`text-[13px] md:text-[15px] max-w-full md:max-w-[280px] leading-relaxed ${stat.descTheme}`}
+              >
                 {stat.description}
               </p>
             </div>
@@ -167,7 +258,7 @@ export default function CorebergHero() {
         ))}
 
         {/* Third card: image */}
-        <div className="relative w-full md:flex-1 md:min-w-[180px] h-[200px] md:h-auto overflow-hidden transition-transform duration-300 hover:scale-[0.98] md:hover:scale-[0.92]">
+        <div className="relative mt-2 w-full md:flex-1 md:min-w-[180px] h-[200px] md:h-auto overflow-hidden transition-transform duration-300 hover:scale-[0.98] md:hover:scale-[0.92]">
           <Image
             src="/images/card3.png"
             alt="Office"

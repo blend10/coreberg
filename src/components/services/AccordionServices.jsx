@@ -1,6 +1,7 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const services = [
   {
@@ -22,13 +23,13 @@ const services = [
     label: "Executive Search",
     title: "Executive Search",
     description:
-      "Besetzung von Führungspositionen auf höchstem Niveau. Wir identifizieren Führungspersönlichkeiten, die Ihr Unternehmen strategisch voranbringen.",
+      "Besetzung von Schlüsselpositionen auf Führungsebene. Mit Diskretion, Fingerspitzengefühl und einem Netzwerk, das über Jahrzehnte gewachsen ist.",
     bullets: [
-      "Diskretion und Vertraulichkeit als Grundlage",
-      "Netzwerkbasierte Direktansprache",
-      "Strukturierter Auswahlprozess auf Führungsebene",
+      "Diskrete Besetzung von Schlüsselpositionen",
+      "Auswahl auf Führungs- und Managementebene",
+      "Strategische Begleitung im gesamten Prozess",
     ],
-    image: "/images/executive-search.jpg",
+    image: "/images/step2.png",
     cta: "Kontakt aufnehmen →",
   },
   {
@@ -36,16 +37,101 @@ const services = [
     label: "Talent Advisory",
     title: "Talent Advisory",
     description:
-      "Strategische Beratung rund um Talentgewinnung und Personalstrategie. Wir begleiten Unternehmen dabei, ihre HR-Prozesse zukunftsfähig aufzustellen.",
+      "Besetzung von Schlüsselpositionen auf Führungsebene. Mit Diskretion, Fingerspitzengefühl und einem Netzwerk, das über Jahrzehnte gewachsen ist.",
     bullets: [
-      "Analyse und Optimierung von Rekrutierungsprozessen",
-      "Aufbau nachhaltiger Talentpipelines",
-      "Beratung zu Employer Branding und Positionierung",
+      "Entwicklung von Recruiting-Strategien",
+      "Unterstützung beim Talentaufbau",
+      "Optimierung von Auswahlprozessen",
     ],
-    image: "/images/talent-advisory.jpg",
+    image: "/images/step3.png",
     cta: "Kontakt aufnehmen →",
   },
 ];
+
+// ── Scroll Reveal ────────────────────────────────────────────────────────────
+const ScrollRevealText = ({
+  parts = [],
+  className = "",
+  as: Component = "div",
+}) => {
+  const containerRef = useRef(null);
+  const [progress, setProgress] = useState(0);
+
+  // Flatten all parts into one string to calculate total chars
+  const fullText = parts.map((p) => p.text).join("");
+  const totalChars = fullText.length;
+
+  useEffect(() => {
+    let rafId = null;
+
+    const handleScroll = () => {
+      if (rafId) return;
+      rafId = requestAnimationFrame(() => {
+        if (!containerRef.current) {
+          rafId = null;
+          return;
+        }
+
+        const { top } = containerRef.current.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+
+        const start = windowHeight * 0.9;
+        const end = windowHeight * 0.2;
+
+        let p = (start - top) / (start - end);
+        if (p < 0) p = 0;
+        if (p > 1) p = 1;
+
+        setProgress(p);
+        rafId = null;
+      });
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
+  }, []);
+
+  let runningCharCount = 0;
+
+  return (
+    <Component ref={containerRef} className={className}>
+      {parts.map((part, partIdx) => {
+        const chars = part.text.split("");
+
+        const renderedPart = (
+          <span key={partIdx} className={part.className || ""}>
+            {chars.map((char, i) => {
+              const currentCharIndex = runningCharCount + i;
+              const charThreshold = currentCharIndex / totalChars;
+              const isVisible = progress > charThreshold;
+
+              return (
+                <span
+                  key={i}
+                  className="transition-colors duration-100"
+                  style={{
+                    color: isVisible
+                      ? part.activeColor || "#B1B9C1"
+                      : "rgba(177, 185, 193, 0.25)",
+                  }}
+                >
+                  {char}
+                </span>
+              );
+            })}
+          </span>
+        );
+
+        runningCharCount += chars.length;
+        return renderedPart;
+      })}
+    </Component>
+  );
+};
 
 export default function AccordionServices() {
   const [openIndex, setOpenIndex] = useState(0);
@@ -55,16 +141,30 @@ export default function AccordionServices() {
   };
 
   return (
-    <section className="bg-[#051423] text-white py-12 md:py-20 px-4 md:px-16">
+    <section
+      id="accordion-services"
+      className="bg-[#051423] text-white py-12 md:py-20 px-4 md:px-16"
+    >
       <div className="container mx-auto flex flex-col gap-2">
         {/* Header */}
         <p className="text-[#B1B9C1] mb-6 md:mb-10">
           Strength at the Core of Talent
         </p>
         <h2 className="text-[24px] md:text-[32px] font-semibold text-white mb-8 md:mb-10">
-          Erfahrung ist durch nichts zu{" "}
-          <br className="hidden md:block" /> ersetzen
+          Unsere Expertise
         </h2>
+        <div className="flex flex-col gap-6 md:gap-8 mb-6 md:mb-10">
+          <ScrollRevealText
+            as="p"
+            className="text-xs md:text-sm leading-relaxed font-medium whitespace-pre-wrap"
+            parts={[
+              {
+                text: "Unternehmen erhalten Zugang zu einem breiten Marktpotenzial. Viele hochqualifizierte Kandidaten sind nicht aktiv auf Stellensuche. Sie sind zufrieden in ihrer aktuellen Position, offen für neue Perspektiven, wenn sich die Gelegenheit richtig anfühlt, aber nicht erreichbar über klassische Kanäle. Durch unsere Expertise und unsere Netzwerke identifizieren wir diese Talente, sprechen sie direkt an und führen gezielte Gespräche. Diese Vorgehensweise erhöht die Chance, die passenden Personen zu gewinnen. \n\n Zweitens sparen Unternehmen wertvolle Ressourcen. Die Besetzung von Schlüsselpositionen ist zeitaufwendig. Jede Stelle erfordert sorgfältige Analyse, Interviews, Referenzprüfungen und oft auch Verhandlungen über Arbeitsverträge. Durch die Auslagerung dieses Prozesses an COREBERG können sich Ihre internen Teams auf Kernaufgaben konzentrieren. Wir übernehmen die gesamte Prozesssteuerung, sorgen für eine konsistente Kommunikation mit Kandidaten und stellen sicher, dass jede Phase effizient abläuft. \n\n Drittens profitieren Unternehmen von objektiver Expertise. Als externe Partner betrachten wir das Profil jedes Kandidaten unabhängig von internen Vorlieben oder bestehenden Netzwerkbindungen. Unsere Einschätzungen basieren auf fundierten Kriterien, Marktkenntnis und Erfahrung in der Beurteilung von Fähigkeiten, Potenzial und kultureller Passung. Diese Neutralität reduziert das Risiko von Fehlbesetzungen, die auf lange Sicht teuer sein können.",
+                activeColor: "#ffffff",
+              },
+            ]}
+          />
+        </div>
 
         {/* Accordion Items */}
         {services.map((service, index) => (
@@ -103,7 +203,6 @@ export default function AccordionServices() {
               }`}
             >
               <div className="flex flex-col md:flex-row gap-8 md:gap-10 items-start md:items-center justify-between pt-2">
-                
                 {/* Left: Text */}
                 <div className="flex flex-col w-full md:w-1/2 gap-4 md:gap-5">
                   <h3 className="text-[22px] md:text-[26px] font-semibold text-white">
@@ -112,12 +211,12 @@ export default function AccordionServices() {
                   <p className="text-[15px] md:text-[17px] text-white leading-relaxed">
                     {service.description}
                   </p>
-                  <a
-                    href="#"
+                  <Link
+                    href="/kontakt"
                     className="inline-flex items-center gap-2 text-sm rounded-lg text-white border border-white/30 px-5 py-2.5 w-fit hover:bg-white hover:text-[#0f1a2e] transition-all duration-200"
                   >
                     {service.cta}
-                  </a>
+                  </Link>
                   <ul className="flex flex-col gap-3 mt-6 md:mt-10">
                     {service.bullets.map((b, i) => (
                       <li

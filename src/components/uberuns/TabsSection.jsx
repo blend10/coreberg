@@ -17,7 +17,7 @@ const tabs = [
         "Strategischer Ansatz statt klassischer Rekrutierung",
         "Langfristiger Unternehmenserfolg im Fokus",
       ],
-      image: "/images/service-1.jpg",
+      image: "/images/service1.png",
     },
   },
   {
@@ -25,15 +25,15 @@ const tabs = [
     content: {
       title: "Individuelle Strategie für jedes Mandat",
       paragraphs: [
-        "Jedes Unternehmen ist einzigartig – daher entwickeln wir für jedes Mandat eine massgeschneiderte Suchstrategie. Wir analysieren Ihre Unternehmenskultur, die Anforderungen der Position und den relevanten Talentmarkt.",
-        "Unser strukturierter Prozess stellt sicher, dass wir nicht nur fachlich qualifizierte, sondern auch kulturell passende Kandidaten identifizieren und präsentieren.",
+        "Jedes Mandat beginnt mit einer präzisen Analyse. Wir arbeiten eng mit Ihnen zusammen, um die Anforderungen der Position zu verstehen, die Unternehmenskultur zu erfassen und die Schlüsselkompetenzen zu definieren. Dabei geht es nicht nur um fachliche Qualifikationen. Soft Skills, Führungsstil, Motivation und langfristige Entwicklungsperspektiven sind entscheidend für den nachhaltigen Erfolg einer Besetzung.",
+        "Wir erstellen daraus ein detailliertes Profil und entwickeln eine gezielte Ansprache für potenzielle Kandidaten. Dieser Ansatz erlaubt es, nicht nur kurzfristig eine Vakanz zu füllen, sondern auch ein Netzwerk aufzubauen, das langfristig für ähnliche Positionen genutzt werden kann. Viele unserer Kundinnen und Kunden profitieren von diesem Talentpool, der kontinuierlich gepflegt wird und auf den sie bei zukünftigen Vakanzen zurückgreifen können.",
       ],
       bullets: [
-        "Massgeschneiderte Suchstrategie",
-        "Kulturelle und fachliche Passung",
-        "Strukturierter, transparenter Prozess",
+        "Fundierte Analyse für passgenaue Besetzungen",
+        "Fokus auf Persönlichkeit, Potenzial und Cultural Fit",
+        "Nachhaltiger Talentpool statt kurzfristiger Lösungen",
       ],
-      image: "/images/service-2.jpg",
+      image: "/images/service2.png",
     },
   },
   {
@@ -41,15 +41,15 @@ const tabs = [
     content: {
       title: "Flexibilität",
       paragraphs: [
-        "Wir passen uns den Bedürfnissen unserer Kunden an – ob kurzfristige Besetzung, langfristige Partnerschaft oder projektbasierte Zusammenarbeit.",
-        "Unsere flexiblen Modelle ermöglichen es, auf veränderte Marktbedingungen und interne Anforderungen schnell zu reagieren.",
+        "Ein weiterer zentraler Vorteil unserer Arbeit ist die Flexibilität. Wir passen unsere Dienstleistungen an Ihre spezifischen Bedürfnisse an. Ob punktuelle Unterstützung bei einer kritischen Vakanz, langfristige Begleitung über mehrere Positionen oder strategische Beratung für den gesamten Talentbereich: coreberg bietet Lösungen, die genau auf Ihre Situation zugeschnitten sind.",
+        "Diese Flexibilität ermöglicht es, schnell auf Marktveränderungen zu reagieren, interne Ressourcen zu schonen und gleichzeitig höchste Qualität in der Personalgewinnung zu gewährleisten.",
       ],
       bullets: [
-        "Flexible Zusammenarbeitsmodelle",
-        "Schnelle Reaktionsfähigkeit",
-        "Skalierbare Lösungen",
+        "Maximale Flexibilität für komplexe Anforderungen",
+        "Agiles Handeln bei sich verändernden Rahmenbedingungen",
+        "Qualitätssicherung trotz hoher Dynamik",
       ],
-      image: "/images/service-3.jpg",
+      image: "/images/service3.png",
     },
   },
   {
@@ -57,15 +57,15 @@ const tabs = [
     content: {
       title: "Trusted Partner",
       paragraphs: [
-        "Wir verstehen uns als langfristiger Partner unserer Kunden – nicht als einmaliger Dienstleister. Vertrauen, Diskretion und Professionalität sind die Grundlage jeder Zusammenarbeit.",
-        "Unsere Kunden schätzen die offene Kommunikation und die nachhaltige Begleitung über den gesamten Besetzungsprozess hinaus.",
+        "Die Zusammenarbeit mit COREBERG steht für Vertrauen und Diskretion. Wir verstehen uns nicht als reine Dienstleister, sondern als strategische Partner. Unser Netzwerk, unsere Erfahrung und unsere Marktkenntnis ermöglichen es, auch schwierige Positionen erfolgreich zu besetzen. Dabei achten wir jederzeit auf die Interessen beider Seiten: Unternehmen und Kandidaten.",
+        "Unsere Kundinnen und Kunden wissen, dass sie sich auf uns verlassen können. Jede Empfehlung ist sorgfältig geprüft, jede Ansprache respektvoll und jede Information vertraulich behandelt. Dies schafft eine solide Grundlage für nachhaltige, langfristige Partnerschaften.",
       ],
       bullets: [
-        "Langfristige Partnerschaft",
-        "Diskretion und Professionalität",
-        "Offene und ehrliche Kommunikation",
+        "Vertrauensvolle Zusammenarbeit auf Augenhöhe",
+        "Diskrete Prozesse und sensible Kommunikation",
+        "Nachhaltige Partnerschaften statt kurzfristiger Lösungen",
       ],
-      image: "/images/handshake.jpg",
+      image: "/images/service4.png",
     },
   },
 ];
@@ -75,7 +75,7 @@ export default function TabsSection() {
   const active = tabs[activeIndex].content;
 
   return (
-    <section className="bg-white py-16 px-6 md:px-16">
+    <section id="tabs-section" className="bg-white py-16 px-6 md:px-16">
       {/* Tab Headers */}
       <div className="container mx-auto">
         <div className="grid grid-cols-2 md:grid-cols-4 border-b border-gray-200">

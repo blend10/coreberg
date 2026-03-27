@@ -13,12 +13,13 @@ const page = () => {
           title="Recruitment.\n"
           titleHighlight="Excellence"
           titleSuffix=""
-          imageSrc="/images/background3.png"
+          imageSrc="/images/background4.png"
           subheading="Strategischer Recruiting-Ansatz"
           description="Professional & Executive Search ist mehr als klassische Rekrutierung. Es ist ein strategischer Prozess zur gezielten Besetzung von Schlüsselpositionen – individuell, diskret und mit klarem Fokus auf nachhaltigen Unternehmenserfolg. Dabei verbinden wir Marktkenntnis, Erfahrung und ein starkes Netzwerk, um die richtigen Talente zu identifizieren und langfristig zu gewinnen."
-          statLabel="Strategischer Ansatz"
-          statDescription="Jede Zusammenarbeit beginnt mit einer präzisen Analyse von Anforderungen und Kontext.So definieren wir ein klares Profil für gezielte und nachhaltige Besetzungen."
-          buttonText="Dienstleistungen entdecken"
+          statLabel="COREBERG als Sparringpartner"
+          statDescription="Die Suche nach Fach- und Führungskräften extern zu vergeben ist nicht nur eine praktische Entlastung für interne HR-Abteilungen. Sie ist ein strategischer Schritt, der viele Vorteile mit sich bringt."
+          buttonText="Jetzt Kontakt Aufnehmen"
+          statNumber="100+"
         />
       </div>
       <StrategicQuote />
