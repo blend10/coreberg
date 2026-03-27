@@ -207,7 +207,7 @@ function StackingCard({ service, index, total }) {
 // ── Component ─────────────────────────────────────────────────────────────────
 export default function ServicesList() {
   return (
-    <section className="container mx-auto px-6 py-16">
+    <section className="container mx-auto px-6 py-0 md:py-16">
       <div className="space-y-20">
         {services.map((service, index) => (
           <StackingCard

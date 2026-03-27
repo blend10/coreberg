@@ -1,4 +1,6 @@
 import React from "react";
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 
 export const metadata = {
   title: "Impressum | COREBERG",
@@ -11,6 +13,15 @@ export default function ImpressumPage() {
       {/* Simple Header */}
       <div className="bg-[#0A162C] pt-32 pb-20 px-6 md:px-16 text-white overflow-hidden relative">
         <div className="container mx-auto relative z-10">
+          <Link 
+            href="/" 
+            className="inline-flex items-center gap-2 text-white/50 hover:text-white transition-all duration-300 mb-10 group"
+          >
+            <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:border-white/30 transition-colors">
+              <ArrowLeft className="w-5 h-5 transition-transform group-hover:-translate-x-1" />
+            </div>
+            <span className="text-xs uppercase tracking-[0.2em] font-sans">Zurück zur Startseite</span>
+          </Link>
           <p className="text-xs uppercase tracking-widest text-white/50 mb-4 font-sans">
             Rechtliche Hinweise
           </p>
