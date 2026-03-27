@@ -30,10 +30,10 @@ export default function TrustedPartner() {
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 lg:gap-20 xl:gap-32 items-center">
         {/* Left: Intro */}
         <div className="flex flex-col gap-6 md:gap-8 lg:gap-10">
-          <p className="text-[28px] md:text-[32px] lg:text-[40px] font-semibold text-[#0A162C]">
+          <p className="text-[28px] md:text-[32px] lg:text-[32px] xl:text-[40px] font-semibold text-[#0A162C]">
             Trusted Partner
           </p>
-          <p className="text-[#42484E] leading-relaxed max-w-lg lg:text-lg">
+          <p className="text-[#42484E] leading-relaxed max-w-lg lg:text-base xl:text-lg">
             Mit COREBERG gewinnen Unternehmen einen Partner, der Talente gezielt
             identifiziert, Prozesse effizienter gestaltet und nachhaltige
             Lösungen entwickelt — die langfristig den Unternehmenserfolg
@@ -54,7 +54,7 @@ export default function TrustedPartner() {
           <p className="text-lg font-semibold tracking-widest text-[#070707] uppercase mb-6 md:mb-8 md:pl-6">
             Kernkompetenzen
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 xl:grid-cols-2 xl:gap-2">
             {competencies.map((item, index) => (
               <div
                 key={index}

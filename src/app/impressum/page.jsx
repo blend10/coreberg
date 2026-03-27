@@ -49,7 +49,7 @@ export default function ImpressumPage() {
               </h2>
               <div className="text-[#42484E] leading-relaxed font-sans text-[15px]">
                 <p className="font-semibold text-[#0A162C]">COREBERG GmbH</p>
-                <p>Mühlebachhof 8</p>
+                <p>Talstrasse 24C</p>
                 <p>8852 Altendorf</p>
                 <p>Schweiz</p>
                 <p className="mt-4">

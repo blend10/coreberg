@@ -123,7 +123,7 @@ export default function TabsSection() {
           </div>
 
           {/* Right: Image */}
-          <div className="relative w-full h-72 md:h-[560px] overflow-hidden rounded-sm shadow-md bg-gray-50">
+          <div className="relative w-full h-72 md:h-[400px] lg:h-[560px] overflow-hidden rounded-sm shadow-md bg-gray-50">
             <Image
               src={active.image}
               alt={active.title}

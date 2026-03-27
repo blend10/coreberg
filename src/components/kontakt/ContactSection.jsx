@@ -57,10 +57,10 @@ export default function ContactSection() {
 
   return (
     <section id="contact-section" className="bg-white py-12 md:py-20 px-4 md:px-16">
-      <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start md:items-center">
+      <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-start lg:items-center">
 
         {/* LEFT: Info panel */}
-        <div className="bg-[#EEF1F3] rounded-xl py-8 px-6 md:px-20 flex flex-col gap-6">
+        <div className="bg-[#EEF1F3] rounded-xl py-8 px-6 md:px-10 lg:px-20 flex flex-col gap-6">
           <div className="flex flex-col gap-3">
             <h2 className="text-[24px] md:text-[32px] text-[#091019]">
               Kontakt aufnehmen

@@ -37,7 +37,7 @@ export default function VakanzenSection2() {
   };
 
   return (
-    <section className="container mx-auto px-4 md:px-6 py-12 md:py-16 lg:py-24 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 lg:gap-20 xl:gap-24 items-center overflow-hidden">
+    <section className="container mx-auto px-4 md:px-6 py-12 md:py-16 lg:py-24 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-10 lg:gap-20 xl:gap-24 items-center overflow-hidden">
       {/* Left: Image */}
       <div className="relative w-full hidden md:flex justify-center">
         {/* Large background image */}
@@ -53,7 +53,7 @@ export default function VakanzenSection2() {
         {/* Overlapping foreground image */}
         <div className="absolute right-0 xl:-right-10 top-1/2 -translate-y-1/2 w-[200px] xl:w-[289px] aspect-[289/434] rounded-2xl overflow-hidden shadow-2xl">
           <Image
-            src="/images/image2.jpg"
+            src="/images/imageright.png"
             alt="Personal Handshake"
             fill
             className="object-cover"
@@ -64,7 +64,7 @@ export default function VakanzenSection2() {
       {/* Mobile-only image: single stacked image */}
       <div className="relative w-full h-[260px] rounded-2xl overflow-hidden shadow-lg md:hidden">
         <Image
-          src="/images/image2.jpg"
+          src="/images/imageright.png"
           alt="Personal Handshake"
           fill
           className="object-cover"

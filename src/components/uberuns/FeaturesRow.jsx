@@ -25,7 +25,7 @@ const features = [
 export default function FeaturesRow() {
   return (
     <section className="bg-white py-16 md:py-24 lg:py-28 px-5 md:px-10 lg:px-20 xl:px-32 border-t border-gray-100">
-      <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16 lg:gap-20 xl:gap-24">
+      <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 lg:gap-16 xl:gap-24">
         {features.map((feature, index) => (
           <div
             key={index}
@@ -43,7 +43,7 @@ export default function FeaturesRow() {
                 {feature.title}
               </h3>
               {/* Description */}
-              <p className="text-[14px] md:text-[15px] lg:text-[16px] text-[#42484E] leading-relaxed">
+              <p className="text-[14px] md:text-[13px] lg:text-[16px] text-[#42484E] leading-relaxed">
                 {feature.description}
               </p>
             </div>

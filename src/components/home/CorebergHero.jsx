@@ -175,11 +175,11 @@ export default function CorebergHero() {
       </div>
 
       {/* Right: Dark content area */}
-      <div className="flex-1 bg-[#0A162C] flex flex-col justify-start py-10 md:py-20 lg:py-28 px-5 md:px-12 lg:px-20 pb-8 md:pb-[380px] lg:pb-[360px] xl:pb-[480px]">
+      <div className="flex-1 bg-[#0A162C] flex flex-col justify-start py-10 md:py-20 lg:py-28 px-5 md:px-12 lg:px-20 pb-8 md:pb-[310px] lg:pb-[360px] xl:pb-[480px]">
         <div className="max-w-[700px] xl:max-w-[900px]">
           <ScrollRevealText
             as="h1"
-            className="text-[22px] md:text-[26px] lg:text-[28px] xl:text-[40px] font-light leading-snug mb-5 md:mb-6"
+            className="text-[22px] md:text-[24px] lg:text-[24px] xl:text-[40px] font-light leading-snug mb-5 md:mb-6"
             parts={[
               {
                 text: "Wir haben COREBERG nicht ins Leben gerufen, um das Recruiting neu zu erfinden. Wir haben es gegründet, um die klassischen Tugenden der Personalberatung mit der Agilität der modernen Wirtschaft zu vereinen. ",
@@ -188,7 +188,7 @@ export default function CorebergHero() {
             ]}
           />
 
-          <p className="text-gray-400 text-sm md:text-base lg:text-base xl:text-lg leading-relaxed mb-6 md:mb-8 lg:max-w-xl">
+          <p className="text-gray-400 text-sm md:text-[15px] lg:text-[15px] xl:text-lg leading-relaxed mb-6 md:mb-8 lg:max-w-xl">
             Hinter COREBERG stehen Experten, die die massgebenden Stationen der
             modernen Personalgewinnung nicht nur durchlaufen, sondern aktiv
             mitgestaltet haben.
@@ -220,9 +220,9 @@ export default function CorebergHero() {
           <div
             key={i}
             className={`
-              relative w-full md:flex-1 md:min-w-[300px] lg:min-w-[300px] xl:min-w-[378px]
-              h-auto md:h-[350px] lg:h-[320px] xl:h-[400px] mt-2
-              p-6 md:p-8 lg:p-8 xl:p-10
+              relative w-full md:flex-1 md:min-w-[220px] lg:min-w-[300px] xl:min-w-[378px]
+              h-auto md:h-[280px] lg:h-[320px] xl:h-[400px] mt-2
+              p-6 md:p-6 lg:p-8 xl:p-10
               flex flex-col justify-end
               transition-transform duration-300 hover:scale-[0.98] md:hover:scale-[0.92]
               ${stat.cardTheme}
@@ -230,7 +230,7 @@ export default function CorebergHero() {
           >
             <div className="mb-auto">
               <p
-                className={`text-base md:text-[18px] lg:text-[18px] xl:text-[20px] font-medium uppercase tracking-widest ${stat.labelTheme}`}
+                className={`text-base md:text-[16px] lg:text-[16px] xl:text-[20px] font-medium uppercase tracking-widest ${stat.labelTheme}`}
               >
                 {stat.label}
               </p>
@@ -243,11 +243,11 @@ export default function CorebergHero() {
                     {stat.icon}
                   </span>
                   <div className="flex flex-row items-end justify-between">
-                    <span className="text-[40px] md:text-[48px] lg:text-[48px] xl:text-[64px] leading-none tracking-tighter">
+                    <span className="text-[40px] md:text-[42px] lg:text-[42px] xl:text-[64px] leading-none tracking-tighter">
                       <CountUp end={stat.value} />
                     </span>
                     <span
-                      className={`text-[24px] md:text-[28px] lg:text-[28px] xl:text-[40px] font-light leading-10 mb-2 ${stat.unitTheme}`}
+                      className={`text-[24px] md:text-[24px] lg:text-[24px] xl:text-[40px] font-light leading-10 mb-2 ${stat.unitTheme}`}
                     >
                       {stat.unit}
                     </span>
@@ -255,7 +255,7 @@ export default function CorebergHero() {
                 </div>
               </div>
               <p
-                className={`text-[13px] md:text-[14px] lg:text-[13px] xl:text-[15px] max-w-full md:max-w-[280px] leading-relaxed ${stat.descTheme}`}
+                className={`text-[13px] md:text-[12px] lg:text-[12px] xl:text-[15px] max-w-full md:max-w-[280px] leading-relaxed ${stat.descTheme}`}
               >
                 {stat.description}
               </p>

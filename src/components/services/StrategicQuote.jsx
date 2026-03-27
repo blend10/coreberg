@@ -12,10 +12,10 @@ const points = [
 
 const StrategicQuote = () => {
   return (
-    <div className="container mx-auto flex flex-col md:flex-row items-start py-12 md:py-20 px-4 md:px-6 justify-start gap-8 md:gap-0">
+    <div className="container mx-auto flex flex-col lg:flex-row items-start py-12 md:py-20 px-4 md:px-6 justify-start gap-8 md:gap-10 lg:gap-0">
       {/* Left: Author block */}
-      <div className="flex flex-row md:flex-col items-center md:items-start gap-5 md:gap-0 w-full md:w-[20%]">
-        <div className="relative w-[80px] h-[110px] md:w-[120px] md:h-[160px] flex-shrink-0">
+      <div className="flex flex-row lg:flex-col items-center lg:items-start gap-5 lg:gap-0 w-full lg:w-[20%]">
+        <div className="relative w-[80px] h-[110px] lg:w-[120px] lg:h-[160px] flex-shrink-0">
           <Image
             src="/images/azir.png"
             alt="Azir Spahiu"
@@ -28,16 +28,16 @@ const StrategicQuote = () => {
         </div>
 
         {/* Name + title — inline on mobile, stacked below image on desktop */}
-        <div className="md:mt-10">
+        <div className="lg:mt-10">
           <div className="relative">
-            <h1 className="text-[#091019] text-[15px] md:text-[17px] font-semibold">
+            <h1 className="text-[#091019] text-[15px] lg:text-[17px] font-semibold">
               Azir Spahiu
             </h1>
-            <h1 className="text-[#42484E] text-[13px] md:text-[15px]">
+            <h1 className="text-[#42484E] text-[13px] lg:text-[15px]">
               Der Gründer
             </h1>
             {/* Signature — only show on desktop where space allows */}
-            <div className="absolute bottom-0 left-20 w-[171px] h-[67px] hidden md:block">
+            <div className="absolute bottom-0 left-20 w-[171px] h-[67px] hidden lg:block">
               <Image src="/images/nenshkrimi.png" alt="Signature" fill />
             </div>
           </div>
@@ -45,17 +45,17 @@ const StrategicQuote = () => {
       </div>
 
       {/* Right: Content */}
-      <div className="w-full md:w-[80%]">
+      <div className="w-full lg:w-[80%]">
         <section>
           <div className="flex flex-col gap-7 md:gap-10">
-            <h2 className="text-[22px] md:text-[32px] font-medium text-[#091019] leading-snug">
+            <h2 className="text-[22px] md:text-[28px] lg:text-[32px] font-medium text-[#091019] leading-snug">
               COREBERG wurde mit der Überzeugung gegründet, dass erfolgreiche
               Personalberatung auf Vertrauen, Klarheit und unternehmerischem
               Denken basiert.
             </h2>
 
             {/* Two-column content */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-8 lg:gap-12 items-start">
               {/* Left: Body text + CTA */}
               <div className="flex flex-col gap-5">
                 <p className="text-sm text-[#42484E] leading-relaxed">

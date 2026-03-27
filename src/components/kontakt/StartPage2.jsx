@@ -74,23 +74,20 @@ const StartPage2 = ({
       <div className="absolute inset-0 bg-black/30 max-sm:bg-black/40 z-0" />
 
       <div
-        className={`absolute inset-0 z-50 flex ${
-          menuOpen ? "pointer-events-auto" : "pointer-events-none"
-        }`}
+        className={`absolute inset-0 z-50 flex ${menuOpen ? "pointer-events-auto" : "pointer-events-none"
+          }`}
       >
         <div
-          className={`absolute w-[50%] max-md:w-full h-full bg-[#FEF8FF36] backdrop-blur-2xl transition-transform duration-700 ease-in-out ${
-            menuOpen ? "translate-x-0" : "-translate-x-full"
-          }`}
+          className={`absolute w-[50%] max-md:w-full h-full bg-[#FEF8FF36] backdrop-blur-2xl transition-transform duration-700 ease-in-out ${menuOpen ? "translate-x-0" : "-translate-x-full"
+            }`}
           style={{ transitionDelay: menuOpen ? "0ms" : "400ms" }}
         />
 
         <div
-          className={`relative z-20 flex flex-col justify-between items-center h-full border-r border-white/10 w-[10%] max-md:w-[20%] max-sm:w-[25%] py-10 max-sm:py-6 shrink-0 transition-all duration-700 ease-out ${
-            menuOpen
-              ? "translate-x-0 opacity-100"
-              : "-translate-x-full opacity-0"
-          }`}
+          className={`relative z-20 flex flex-col justify-between items-center h-full border-r border-white/10 w-[10%] max-md:w-[20%] max-sm:w-[25%] py-10 max-sm:py-6 shrink-0 transition-all duration-700 ease-out ${menuOpen
+            ? "translate-x-0 opacity-100"
+            : "-translate-x-full opacity-0"
+            }`}
           style={{ transitionDelay: menuOpen ? "100ms" : "250ms" }}
         >
           <div>
@@ -121,7 +118,7 @@ const StartPage2 = ({
 
           <div className="flex flex-col gap-4 items-center">
             <a
-              href="#"
+              href="https://www.linkedin.com/company/coreberg/"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:opacity-75 transition-opacity"
@@ -138,9 +135,8 @@ const StartPage2 = ({
         </div>
 
         <div
-          className={`relative z-10 flex flex-col justify-center px-16 max-md:px-8 max-sm:px-6 h-full transition-all duration-700 ease-out ${
-            menuOpen ? "translate-x-0 opacity-100" : "-translate-x-12 opacity-0"
-          }`}
+          className={`relative z-10 flex flex-col justify-center px-16 max-md:px-8 max-sm:px-6 h-full transition-all duration-700 ease-out ${menuOpen ? "translate-x-0 opacity-100" : "-translate-x-12 opacity-0"
+            }`}
           style={{ transitionDelay: menuOpen ? "200ms" : "150ms" }}
         >
           <nav className="flex flex-col gap-6 max-sm:gap-5">
@@ -162,15 +158,13 @@ const StartPage2 = ({
                       ? `${i * 40 + 300}ms`
                       : `${(4 - i) * 30}ms`,
                   }}
-                  className={`font-sans text-lg max-sm:text-base tracking-wide transition-all duration-500 ${
-                    menuOpen
-                      ? "translate-y-0 opacity-100 pointer-events-auto"
-                      : "translate-y-4 opacity-0 pointer-events-none"
-                  } ${
-                    isActive
+                  className={`font-sans text-lg max-sm:text-base tracking-wide transition-all duration-500 ${menuOpen
+                    ? "translate-y-0 opacity-100 pointer-events-auto"
+                    : "translate-y-4 opacity-0 pointer-events-none"
+                    } ${isActive
                       ? "text-white underline underline-offset-4"
                       : "text-white/60 hover:text-white"
-                  }`}
+                    }`}
                 >
                   {item.label}
                 </Link>
@@ -207,7 +201,7 @@ const StartPage2 = ({
 
           <div className="flex flex-col gap-4 items-center">
             <a
-              href="#"
+              href="https://www.linkedin.com/company/coreberg/"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:opacity-75 transition-opacity"
@@ -235,7 +229,7 @@ const StartPage2 = ({
           </Link>
           <div className="flex items-center gap-4 max-sm:gap-3 px-5">
             <a
-              href="#"
+              href="https://www.linkedin.com/company/coreberg/"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:opacity-75 transition-opacity hidden"
@@ -263,8 +257,8 @@ const StartPage2 = ({
           </div>
         </div>
         <div className="flex flex-1 relative overflow-hidden max-md:flex-col">
-          <div className="flex flex-col justify-center px-16 w-[61.8%] max-md:w-full max-md:px-6 max-md:pt-20 max-sm:pt-20 max-md:justify-center max-md:flex-1">
-            <h1 className="text-white text-5xl xl:text-6xl font-light leading-tight mb-6 tracking-tight max-md:text-4xl max-sm:text-[26px] max-md:mb-4 max-sm:mb-3">
+          <div className="flex flex-col justify-center px-8 md:px-10 lg:px-16 w-[61.8%] max-md:w-full max-md:px-6 max-md:pt-20 max-sm:pt-20 max-md:justify-center max-md:flex-1">
+            <h1 className="text-white text-4xl md:text-[40px] lg:text-5xl xl:text-6xl font-light leading-tight mb-6 tracking-tight max-md:text-4xl max-sm:text-[26px] max-md:mb-4 max-sm:mb-3">
               {title.split("\\n").map((line, i) => (
                 <React.Fragment key={i}>
                   {line}
@@ -345,7 +339,7 @@ const StartPage2 = ({
               </Link>
             </div>
           </div>
-          <div className="absolute right-0 top-0 h-full w-[45%] flex items-end justify-end p-10 max-md:relative max-md:w-full max-md:h-auto max-md:min-h-[200px] max-md:p-0 max-md:mt-auto">
+          <div className="absolute right-0 top-0 h-full w-[45%] flex items-end justify-end p-6 md:p-8 lg:p-10 max-md:relative max-md:w-full max-md:h-auto max-md:min-h-[200px] max-md:p-0 max-md:mt-auto">
             <div className="relative h-full w-full border border-white rounded-lg max-md:rounded-none max-md:border-x-0 max-md:border-b-0 max-md:border-t max-md:border-white/30">
               <div className="absolute top-5 left-5 w-10 h-10 bg-white [clip-path:polygon(0%_0%,100%_0%,0%_100%)] max-md:hidden" />
               {/* <div className="absolute bottom-0 max-md:relative backdrop-blur-md bg-white/10 border border-white/20 rounded-b-lg p-6 shadow-xl max-md:p-4 max-sm:p-3 max-md:rounded-none w-full">

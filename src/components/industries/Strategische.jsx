@@ -50,7 +50,7 @@ export default function Strategische() {
     <section className="bg-white py-14 md:py-20 px-4 md:px-16">
       <div className="container mx-auto">
         {/* Top: two-column intro */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 mb-12 md:mb-16 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-8 lg:gap-16 mb-12 md:mb-16 items-start">
           {/* Left label */}
           <p className="text-[#42484E] text-sm leading-relaxed ">
             Über Profile hinaus zum passenden Talent.
@@ -58,7 +58,7 @@ export default function Strategische() {
 
           {/* Right: heading + body + CTA */}
           <div className="flex flex-col gap-5">
-            <h2 className="text-[26px] md:text-[36px] font-bold text-gray-900 leading-snug">
+            <h2 className="text-[26px] md:text-[30px] lg:text-[36px] font-bold text-gray-900 leading-snug">
               Strategische Beratung für nachhaltige Personalentscheidungen.
             </h2>
             <p className="text-gray-500 text-sm leading-relaxed">

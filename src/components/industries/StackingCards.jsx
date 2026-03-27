@@ -57,21 +57,21 @@ const industries = [
 export default function StackingCards() {
   return (
     <div id="stacking-cards" className="bg-[#0A162C]">
-      <div className="container mx-auto grid grid-cols-1 md:grid-cols-2">
+      <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2">
         {/* LEFT: Static on mobile, sticky on desktop */}
-        <div className="md:sticky md:top-0 md:h-screen text-white p-6 md:p-8 lg:p-10 xl:p-12 flex flex-col justify-center gap-5 md:gap-6 pt-10 md:pt-12">
-          <h2 className="text-[26px] md:text-[30px] lg:text-[32px] xl:text-[40px] leading-snug">
+        <div className="lg:sticky lg:top-0 lg:h-screen text-white p-6 md:p-8 lg:p-10 xl:p-12 flex flex-col justify-center gap-5 md:gap-6 pt-10 md:pt-12">
+          <h2 className="text-[26px] md:text-[28px] lg:text-[28px] xl:text-[40px] leading-snug">
             Unabhängig von der Branche wir besetzen entscheidende Positionen mit
             Präzision.
           </h2>
-          <p className="text-[15px] md:text-[15px] lg:text-[15px] xl:text-[17px] text-[#B1B9C1] leading-relaxed max-w-xl">
+          <p className="text-[15px] md:text-[14px] lg:text-[14px] xl:text-[17px] text-[#B1B9C1] leading-relaxed max-w-xl">
             Bei COREBERG steht die Qualität der Kandidaten immer an erster
             Stelle. Wir liefern keine endlosen Listen, sondern sorgfältig
             ausgewählte Profile, die Ihren Anforderungen entsprechen. Jede
             Empfehlung ist das Ergebnis eines strukturierten Auswahlprozesses,
             persönlicher Gespräche und fundierter Beurteilungen.
           </p>
-          <p className="text-[15px] md:text-[14px] lg:text-[14px] xl:text-[16px] text-[#B1B9C1] leading-relaxed max-w-xl">
+          <p className="text-[15px] md:text-[13px] lg:text-[13px] xl:text-[16px] text-[#B1B9C1] leading-relaxed max-w-xl">
             Wir prüfen fachliche Qualifikationen, Erfahrungen, Erfolge, aber
             auch Motivation, Persönlichkeit und kulturelle Passung. Unser Ziel
             ist es, Kandidaten zu präsentieren, die nicht nur die erforderlichen
@@ -92,7 +92,7 @@ export default function StackingCards() {
             ].map((b, i) => (
               <li
                 key={i}
-                className="flex items-start gap-3 text-[15px] md:text-[16px] lg:text-[16px] xl:text-[19px] text-[#B1B9C1] border-b border-[#B1B9C1] pb-4 whitespace-pre-line"
+                className="flex items-start gap-3 text-[15px] md:text-[15px] lg:text-[15px] xl:text-[19px] text-[#B1B9C1] border-b border-[#B1B9C1] pb-4 whitespace-pre-line"
               >
                 <Image
                   src="/images/tik3.svg"
@@ -122,25 +122,25 @@ export default function StackingCards() {
               <div className="pt-5 md:pt-8 min-h-[auto] md:min-h-[400px] lg:min-h-[440px] xl:min-h-[480px] flex flex-col justify-between gap-4 md:gap-6">
                 {/* Label */}
                 <div className="w-full">
-                  <h3 className="text-[14px] px-3 md:px-5 md:text-[15px] lg:text-[15px] xl:text-[16px] font-semibold border-b border-[#B1B9C1] pb-3 md:pb-4 text-[#091019]">
+                  <h3 className="text-[14px] px-3 md:px-5 md:text-[14px] lg:text-[14px] xl:text-[16px] font-semibold border-b border-[#B1B9C1] pb-3 md:pb-4 text-[#091019]">
                     {service.label}
                   </h3>
                 </div>
 
                 {/* Number + Descriptions */}
-                <div className="flex flex-col px-3 md:px-5 md:flex-row md:justify-between md:items-end gap-3 md:gap-0">
+                <div className="flex flex-col px-3 md:px-5 lg:flex-row lg:justify-between lg:items-end gap-3 md:gap-0">
                   {/* Large number */}
-                  <div className="md:w-[20%]">
-                    <span className="text-[48px] md:text-[60px] lg:text-[60px] xl:text-[80px] font-medium text-[#B1B9C1] leading-none select-none">
+                  <div className="lg:w-[20%]">
+                    <span className="text-[48px] md:text-[60px] lg:text-[54px] xl:text-[80px] font-medium text-[#B1B9C1] leading-none select-none">
                       {service.number}
                     </span>
                   </div>
                   {/* Text */}
-                  <div className="flex flex-col gap-3 md:flex-1 md:max-w-[70%] lg:max-w-[65%] xl:max-w-[55%]">
-                    <p className="text-[10px] md:text-[12px] lg:text-[13px] xl:text-[14px] text-[#42484E] leading-relaxed">
+                  <div className="flex flex-col gap-3 lg:flex-1 lg:max-w-[65%] xl:max-w-[55%]">
+                    <p className="text-[10px] md:text-[12px] lg:text-[11px] xl:text-[14px] text-[#42484E] leading-relaxed">
                       {service.description}
                     </p>
-                    <p className="text-[10px] md:text-[12px] lg:text-[13px] xl:text-[14px] text-[#42484E] leading-relaxed">
+                    <p className="text-[10px] md:text-[12px] lg:text-[11px] xl:text-[14px] text-[#42484E] leading-relaxed">
                       {service.detail}
                     </p>
                   </div>

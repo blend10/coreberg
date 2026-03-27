@@ -37,7 +37,7 @@ const services = [
     label: "Talent Advisory",
     title: "Talent Advisory",
     description:
-      "Besetzung von Schlüsselpositionen auf Führungsebene. Mit Diskretion, Fingerspitzengefühl und einem Netzwerk, das über Jahrzehnte gewachsen ist.",
+      "Mehr als reine Personalvermittlung. Es ist ein strategischer Ansatz, der Unternehmen dabei unterstützt, ihre Talentstrategie zu optimieren, zukünftige Personalbedarfe vorherzusehen und gezielt auf Marktveränderungen zu reagieren",
     bullets: [
       "Entwicklung von Recruiting-Strategien",
       "Unterstützung beim Talentaufbau",
@@ -136,6 +136,32 @@ const ScrollRevealText = ({
 export default function AccordionServices() {
   const [openIndex, setOpenIndex] = useState(0);
 
+  useEffect(() => {
+    const handleHash = () => {
+      const hash = window.location.hash;
+      if (hash) {
+        const id = hash.replace("#", "");
+        const index = services.findIndex(
+          (s) => s.label.toLowerCase().replace(/\s+/g, "-") === id
+        );
+        if (index !== -1) {
+          setOpenIndex(index);
+          // Scroll to the element after a short delay to ensure it's rendered and open
+          setTimeout(() => {
+            const element = document.getElementById(id);
+            if (element) {
+              element.scrollIntoView({ behavior: "smooth" });
+            }
+          }, 100);
+        }
+      }
+    };
+
+    handleHash();
+    window.addEventListener("hashchange", handleHash);
+    return () => window.removeEventListener("hashchange", handleHash);
+  }, []);
+
   const toggle = (index) => {
     setOpenIndex(openIndex === index ? null : index);
   };
@@ -150,13 +176,13 @@ export default function AccordionServices() {
         <p className="text-[#B1B9C1] mb-6 md:mb-10">
           Strength at the Core of Talent
         </p>
-        <h2 className="text-[24px] md:text-[32px] font-semibold text-white mb-8 md:mb-10">
+        <h2 className="text-[24px] md:text-[28px] lg:text-[28px] xl:text-[32px] font-semibold text-white mb-8 md:mb-10">
           Unsere Expertise
         </h2>
-        <div className="flex flex-col gap-6 md:gap-8 mb-6 md:mb-10">
+        <div className="flex flex-col gap-5 md:gap-8 mb-6 md:mb-10 max-w-4xl">
           <ScrollRevealText
             as="p"
-            className="text-xs md:text-sm leading-relaxed font-medium whitespace-pre-wrap"
+            className="text-[13px] md:text-[14px] lg:text-[14px] xl:text-[15px] leading-relaxed font-medium whitespace-pre-wrap"
             parts={[
               {
                 text: "Unternehmen erhalten Zugang zu einem breiten Marktpotenzial. Viele hochqualifizierte Kandidaten sind nicht aktiv auf Stellensuche. Sie sind zufrieden in ihrer aktuellen Position, offen für neue Perspektiven, wenn sich die Gelegenheit richtig anfühlt, aber nicht erreichbar über klassische Kanäle. Durch unsere Expertise und unsere Netzwerke identifizieren wir diese Talente, sprechen sie direkt an und führen gezielte Gespräche. Diese Vorgehensweise erhöht die Chance, die passenden Personen zu gewinnen. \n\n Zweitens sparen Unternehmen wertvolle Ressourcen. Die Besetzung von Schlüsselpositionen ist zeitaufwendig. Jede Stelle erfordert sorgfältige Analyse, Interviews, Referenzprüfungen und oft auch Verhandlungen über Arbeitsverträge. Durch die Auslagerung dieses Prozesses an COREBERG können sich Ihre internen Teams auf Kernaufgaben konzentrieren. Wir übernehmen die gesamte Prozesssteuerung, sorgen für eine konsistente Kommunikation mit Kandidaten und stellen sicher, dass jede Phase effizient abläuft. \n\n Drittens profitieren Unternehmen von objektiver Expertise. Als externe Partner betrachten wir das Profil jedes Kandidaten unabhängig von internen Vorlieben oder bestehenden Netzwerkbindungen. Unsere Einschätzungen basieren auf fundierten Kriterien, Marktkenntnis und Erfahrung in der Beurteilung von Fähigkeiten, Potenzial und kultureller Passung. Diese Neutralität reduziert das Risiko von Fehlbesetzungen, die auf lange Sicht teuer sein können.",
@@ -168,7 +194,11 @@ export default function AccordionServices() {
 
         {/* Accordion Items */}
         {services.map((service, index) => (
-          <div key={index} className="border-t border-white/10">
+          <div
+            key={index}
+            id={service.label.toLowerCase().replace(/\s+/g, "-")}
+            className="border-t border-white/10"
+          >
             {/* Row Header */}
             <button
               onClick={() => toggle(index)}
@@ -197,17 +227,17 @@ export default function AccordionServices() {
             {/* Expanded Content */}
             <div
               className={`overflow-hidden transition-all duration-500 ease-in-out ${openIndex === index
-                  ? "max-h-[1200px] opacity-100 pb-8 md:pb-10"
-                  : "max-h-0 opacity-0"
+                ? "max-h-[1200px] opacity-100 pb-8 md:pb-10"
+                : "max-h-0 opacity-0"
                 }`}
             >
-              <div className="flex flex-col md:flex-row gap-8 md:gap-10 items-start md:items-center justify-between pt-2">
+              <div className="flex flex-col lg:flex-row gap-8 md:gap-10 items-start lg:items-center justify-between pt-2">
                 {/* Left: Text */}
-                <div className="flex flex-col w-full md:w-1/2 gap-4 md:gap-5">
-                  <h3 className="text-[22px] md:text-[26px] font-semibold text-white">
+                <div className="flex flex-col w-full lg:w-1/2 gap-4 md:gap-5">
+                  <h3 className="text-[22px] lg:text-[24px] xl:text-[26px] font-semibold text-white">
                     {service.title}
                   </h3>
-                  <p className="text-[15px] md:text-[17px] text-white leading-relaxed">
+                  <p className="text-[15px] lg:text-[16px] xl:text-[17px] text-white leading-relaxed">
                     {service.description}
                   </p>
                   <Link
@@ -220,7 +250,7 @@ export default function AccordionServices() {
                     {service.bullets.map((b, i) => (
                       <li
                         key={i}
-                        className="flex mb-2 border-b border-white/10 pb-4 items-center gap-3 text-[15px] md:text-[17px] text-white"
+                        className="flex mb-2 border-b border-white/10 pb-4 items-center gap-3 text-[15px] lg:text-[16px] xl:text-[17px] text-white"
                       >
                         <Image
                           src="/images/tik2.svg"
@@ -236,7 +266,7 @@ export default function AccordionServices() {
                 </div>
 
                 {/* Right: Image */}
-                <div className="relative w-full h-[220px] md:w-[590px] md:h-[550px] overflow-hidden rounded-sm flex-shrink-0">
+                <div className="relative w-full h-[260px] md:h-[320px] lg:h-[450px] xl:w-[590px] xl:h-[550px] overflow-hidden rounded-sm flex-shrink-0">
                   <Image
                     src={service.image}
                     alt={service.title}

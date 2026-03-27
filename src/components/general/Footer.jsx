@@ -7,7 +7,7 @@ export default function Footer() {
     <div className="bg-white p-3">
       <footer className="bg-[#0A162C] p-3  rounded-[36px] md:rounded-2xl text-white">
         {/* CTA Section */}
-        <div className="container mx-auto bg-[#B1B9C1] rounded-[30px] mt-0 md:mt-5 px-6 md:px-16 py-10 relative overflow-hidden">
+        <div className="container mx-auto bg-[#B1B9C1] rounded-[30px] mt-0 md:mt-5 px-6 md:px-10 lg:px-16 py-10 relative overflow-hidden">
           <div className="absolute top-0 left-0 pointer-events-none z-0">
             <Image
               src="/images/Vector.svg"
@@ -181,14 +181,14 @@ export default function Footer() {
                 Adresse
               </p>
               <a
-                href="https://www.google.com/maps/place/M%C3%BChlebachhof+8,+8852+Altendorf,+Switzerland/@47.1936444,8.8202626,851m/data=!3m2!1e3!4b1!4m6!3m5!1s0x479ab6846c9dc68d:0x90909e9c6c9566a8!8m2!3d47.1936444!4d8.8202626!16s%2Fg%2F11kj3g_zqd?entry=ttu&g_ep=EgoyMDI2MDMyMy4xIKXMDSoASAFQAw%3D%3D"
+                href="https://www.google.com/maps/place/Talstrasse+24C,+8852+Altendorf,+Switzerland/@48.0660166,7.7705024,6.5z/data=!4m6!3m5!1s0x479ab69b7f207b2f:0x840fd2334cd57e2a!8m2!3d47.1935868!4d8.8132616!16s%2Fg%2F11csflx2d1!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDMyNC4wIKXMDSoASAFQAw%3D%3D"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[13px] text-white leading-relaxed block hover:underline transition-colors w-fit"
               >
                 COREBERG GmbH
                 <br />
-                Talestrasse 24C
+                Talstrasse 24C
                 <br />
                 8852 Altendorf
                 <br />

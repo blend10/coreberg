@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -28,8 +28,36 @@ const services = [
 export default function ExperienceSection() {
   const sliderRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
+
+  useEffect(() => {
+    // Only auto-slide if not dragging and not hovered
+    if (isDragging || isHovered) return;
+
+    const interval = setInterval(() => {
+      if (sliderRef.current) {
+        const { scrollLeft, scrollWidth, clientWidth } = sliderRef.current;
+        const cardWidth = sliderRef.current.firstChild?.offsetWidth || 510;
+
+        // Calculate the next scroll position
+        let nextScroll = scrollLeft + cardWidth;
+
+        // Reset to 0 if we reached the end
+        if (nextScroll >= scrollWidth - clientWidth + 10) {
+          nextScroll = 0;
+        }
+
+        sliderRef.current.scrollTo({
+          left: nextScroll,
+          behavior: "smooth",
+        });
+      }
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, [isDragging, isHovered]);
 
   const onMouseDown = (e) => {
     setIsDragging(true);
@@ -40,6 +68,7 @@ export default function ExperienceSection() {
 
   const onMouseLeave = () => {
     setIsDragging(false);
+    setIsHovered(false);
     sliderRef.current.style.cursor = "grab";
   };
 
@@ -85,7 +114,7 @@ export default function ExperienceSection() {
         <p className="text-xs text-white/40 uppercase tracking-widest mb-3">
           Strength at the Core of Talent.
         </p>
-        <h2 className="text-2xl md:text-[42px] font-semibold leading-tight">
+        <h2 className="text-2xl md:text-[32px] lg:text-[42px] font-semibold leading-tight">
           Unsere Expertise
         </h2>
       </div>
@@ -94,9 +123,9 @@ export default function ExperienceSection() {
       <hr className="border-white/10 mb-8 md:mb-10 container mx-auto" />
 
       {/* Bottom grid: left text + draggable cards */}
-      <div className="flex flex-col md:flex-row gap-8 md:gap-10 container mx-auto">
+      <div className="flex flex-col lg:flex-row gap-8 md:gap-10 container mx-auto">
         {/* Left text block */}
-        <div className="w-full md:w-[40%] flex flex-col gap-6 md:gap-10 items-start justify-between">
+        <div className="w-full lg:w-[40%] flex flex-col gap-6 md:gap-10 items-start justify-between">
           <p className="text-base md:text-lg text-white leading-relaxed">
             Die Zusammenarbeit mit COREBERG steht für Vertrauen und Diskretion.
             Wir verstehen uns nicht als reine Dienstleister, sondern als
@@ -108,7 +137,7 @@ export default function ExperienceSection() {
             Wir arbeiten eng mit Unternehmen zusammen, um die Anforderungen der
             Position zu verstehen, die Unternehmenskultur zu erfassen und die
             Schlüsselkompetenzen zu definieren. Dabei geht es nicht nur um
-            fachliche Qualifikationen.  
+            fachliche Qualifikationen.
           </p>
           <Link href="/dienstleistungen#accordion-services" className="mt-2 md:mt-4 bg-white text-[#0d1b2a] rounded-lg border border-white text-sm px-5 py-2.5 flex items-center gap-2 hover:bg-transparent hover:text-white transition-colors duration-200 w-fit">
             Beratung anfragen <span>→</span>
@@ -120,16 +149,18 @@ export default function ExperienceSection() {
           ref={sliderRef}
           className="flex gap-0 overflow-x-scroll scrollbar-hide cursor-grab select-none flex-1 -mx-4 md:mx-0 px-4 md:px-0"
           onMouseDown={onMouseDown}
-          onMouseLeave={onMouseLeave}
           onMouseUp={onMouseUp}
           onMouseMove={onMouseMove}
           onTouchStart={onTouchStart}
           onTouchMove={onTouchMove}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={onMouseLeave}
         >
           {services.map((service, index) => (
-            <div
+            <Link
               key={index}
-              className="group w-[80vw] sm:w-[340px] md:w-[510px] h-auto md:h-[410px] border border-white/15 bg-[#0A162C] hover:bg-[#2C3F51] p-5 md:p-7 flex flex-col justify-between gap-6 md:gap-8 shrink-0 transition-colors duration-300"
+              href={`/dienstleistungen#${service.title.toLowerCase().replace(/\s+/g, "-")}`}
+              className="group w-[80vw] sm:w-[340px] md:w-[380px] lg:w-[510px] h-auto md:h-[340px] lg:h-[410px] border border-white/15 bg-[#0A162C] hover:bg-[#2C3F51] p-5 md:p-7 flex flex-col justify-between gap-6 md:gap-8 shrink-0 transition-colors duration-300"
             >
               <div className="space-y-3 md:space-y-4">
                 <h3 className="text-[20px] md:text-[24px] font-semibold text-white">
@@ -153,11 +184,13 @@ export default function ExperienceSection() {
                     <div className="w-full h-full bg-white rounded-full" />
                   )}
                 </div>
-                <button className="w-9 h-9 md:w-10 md:h-10 rounded-full bg-[#223140] text-white flex items-center justify-center group-hover:bg-white group-hover:text-black group-hover:scale-110 md:hover:scale-175 transition-all duration-300">
+                <button
+                  className="w-9 h-9 md:w-10 md:h-10 rounded-full bg-[#223140] text-white flex items-center justify-center group-hover:bg-white group-hover:text-black group-hover:scale-110 md:hover:scale-175 transition-all duration-300 pointer-events-none"
+                >
                   →
                 </button>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
