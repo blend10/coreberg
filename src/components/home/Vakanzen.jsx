@@ -22,18 +22,42 @@ const accordionItems = [
 export default function VakanzenSection() {
   const [openItem, setOpenItem] = useState(2);
   const [file, setFile] = useState(null);
+  const [email, setEmail] = useState("");
   const [isSent, setIsSent] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState(null);
 
   const toggle = (id) => setOpenItem(openItem === id ? null : id);
 
-  const handleSend = () => {
-    setIsSent(true);
-    // Here you would hook up the actual Formspree/backend logic.
-    // Reset back to normal after 3.5 seconds.
-    setTimeout(() => {
-      setFile(null);
-      setIsSent(false);
-    }, 3500);
+  const handleSend = async () => {
+    if (!file || !email || isSubmitting) return;
+    setIsSubmitting(true);
+    setError(null);
+
+    const formData = new FormData();
+    formData.append("cv", file);
+    formData.append("email", email);
+
+    try {
+      const res = await fetch("/api/send-cv", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (res.ok) {
+        setIsSent(true);
+        setFile(null);
+        setEmail("");
+        setTimeout(() => setIsSent(false), 3500);
+      } else {
+        const data = await res.json();
+        setError(data.error || "Etwas ist schiefgelaufen.");
+      }
+    } catch (err) {
+      setError("Netzwerkfehler. Bitte erneut versuchen.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -113,24 +137,39 @@ export default function VakanzenSection() {
           )}
 
           {file && !isSent && (
-            <div className="flex items-center gap-2 animate-in fade-in slide-in-from-left-2 duration-300">
-              <div className="flex items-center gap-2 bg-gray-100 border border-gray-200 text-gray-800 text-sm font-medium px-4 py-3 rounded-md">
-                <span className="truncate max-w-[120px] md:max-w-[180px]">
-                  {file.name}
-                </span>
+            <div className="flex flex-col gap-2 w-full animate-in fade-in slide-in-from-left-2 duration-300">
+              {/* Email input */}
+              <input
+                type="email"
+                placeholder="Ihre E-Mail Adresse *"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full border border-gray-200 rounded-md px-4 py-2.5 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-300 transition"
+              />
+              {/* File chip + send button */}
+              <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 bg-gray-100 border border-gray-200 text-gray-800 text-sm font-medium px-4 py-3 rounded-md">
+                  <span className="truncate max-w-[120px] md:max-w-[180px]">
+                    {file.name}
+                  </span>
+                  <button
+                    onClick={() => setFile(null)}
+                    className="text-gray-400 hover:text-red-500 transition-colors"
+                  >
+                    <X size={16} />
+                  </button>
+                </div>
                 <button
-                  onClick={() => setFile(null)}
-                  className="text-gray-400 hover:text-red-500 transition-colors"
+                  onClick={handleSend}
+                  disabled={isSubmitting || !email}
+                  className="flex items-center gap-2 bg-[#091019] text-white text-sm font-medium px-6 py-3 rounded-md hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  <X size={16} />
+                  {isSubmitting ? "WIRD GESENDET…" : "SENDEN"} <ArrowRight size={16} />
                 </button>
               </div>
-              <button
-                onClick={handleSend}
-                className="flex items-center gap-2 bg-[#091019] text-white text-sm font-medium px-6 py-3 rounded-md hover:opacity-90 transition-opacity"
-              >
-                SENDEN <ArrowRight size={16} />
-              </button>
+              {error && (
+                <p className="text-red-500 text-xs mt-1">{error}</p>
+              )}
             </div>
           )}
 

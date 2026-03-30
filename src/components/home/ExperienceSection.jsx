@@ -38,23 +38,25 @@ export default function ExperienceSection() {
 
     const interval = setInterval(() => {
       if (sliderRef.current) {
-        const { scrollLeft, scrollWidth, clientWidth } = sliderRef.current;
+        const { scrollLeft, clientWidth } = sliderRef.current;
         const cardWidth = sliderRef.current.firstChild?.offsetWidth || 510;
 
-        // Calculate the next scroll position
-        let nextScroll = scrollLeft + cardWidth;
+        // Calculate how many cards can actually be shown and how many scroll steps we have
+        const cardsToShow = clientWidth / cardWidth;
+        const maxIndex = Math.max(0, services.length - Math.round(cardsToShow));
+        
+        // Calculate the current index based on scroll position
+        const currentIndex = Math.round(scrollLeft / cardWidth);
+        const nextIndex = currentIndex >= maxIndex ? 0 : currentIndex + 1;
 
-        // Reset to 0 if we reached the end
-        if (nextScroll >= scrollWidth - clientWidth + 10) {
-          nextScroll = 0;
-        }
+        const nextScroll = nextIndex * cardWidth;
 
         sliderRef.current.scrollTo({
           left: nextScroll,
           behavior: "smooth",
         });
       }
-    }, 2000);
+    }, 4000);
 
     return () => clearInterval(interval);
   }, [isDragging, isHovered]);
@@ -87,11 +89,17 @@ export default function ExperienceSection() {
 
   // Touch support for mobile swipe
   const onTouchStart = (e) => {
+    setIsDragging(true);
     setStartX(e.touches[0].pageX - sliderRef.current.offsetLeft);
     setScrollLeft(sliderRef.current.scrollLeft);
   };
 
+  const onTouchEnd = () => {
+    setIsDragging(false);
+  };
+
   const onTouchMove = (e) => {
+    if (!isDragging) return;
     const x = e.touches[0].pageX - sliderRef.current.offsetLeft;
     const walk = (x - startX) * 1.5;
     sliderRef.current.scrollLeft = scrollLeft - walk;
@@ -147,12 +155,13 @@ export default function ExperienceSection() {
         {/* Draggable / swipeable cards */}
         <div
           ref={sliderRef}
-          className="flex gap-0 overflow-x-scroll scrollbar-hide cursor-grab select-none flex-1 -mx-4 md:mx-0 px-4 md:px-0"
+          className="flex gap-0 overflow-x-scroll scrollbar-hide cursor-grab select-none flex-1  md:mx-0 px-1 md:px-0 scroll-smooth snap-x snap-mandatory"
           onMouseDown={onMouseDown}
           onMouseUp={onMouseUp}
           onMouseMove={onMouseMove}
           onTouchStart={onTouchStart}
           onTouchMove={onTouchMove}
+          onTouchEnd={onTouchEnd}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={onMouseLeave}
         >
@@ -160,7 +169,7 @@ export default function ExperienceSection() {
             <Link
               key={index}
               href={`/dienstleistungen#${service.title.toLowerCase().replace(/\s+/g, "-")}`}
-              className="group w-[80vw] sm:w-[340px] md:w-[380px] lg:w-[510px] h-auto md:h-[340px] lg:h-[410px] border border-white/15 bg-[#0A162C] hover:bg-[#2C3F51] p-5 md:p-7 flex flex-col justify-between gap-6 md:gap-8 shrink-0 transition-colors duration-300"
+              className="group w-full sm:w-1/2 h-auto md:h-[340px] lg:h-[410px] border border-white/15 bg-[#0A162C] hover:bg-[#2C3F51] p-5 md:p-7 flex flex-col justify-between gap-6 md:gap-8 shrink-0 transition-colors duration-300 snap-start"
             >
               <div className="space-y-3 md:space-y-4">
                 <h3 className="text-[20px] md:text-[24px] font-semibold text-white">

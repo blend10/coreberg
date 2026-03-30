@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
+import { Check } from "lucide-react";
 
 const services = [
   {
@@ -41,6 +42,7 @@ export default function ContactSection() {
     message: "",
     agreed: false,
   });
+  const [status, setStatus] = useState({ loading: false, success: false, error: null });
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -50,9 +52,41 @@ export default function ContactSection() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(form);
+    if (status.loading) return;
+    setStatus({ loading: true, success: false, error: null });
+
+    const formData = new FormData();
+    Object.keys(form).forEach((key) => {
+      formData.append(key, form[key]);
+    });
+
+    try {
+      const res = await fetch("/api/contact-main", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (res.ok) {
+        setStatus({ loading: false, success: true, error: null });
+        setForm({
+          email: "",
+          name: "",
+          phone: "",
+          company: "",
+          service: "",
+          message: "",
+          agreed: false,
+        });
+        setTimeout(() => setStatus((prev) => ({ ...prev, success: false })), 4000);
+      } else {
+        const data = await res.json();
+        setStatus({ loading: false, success: false, error: data.error || "Etwas ist schiefgelaufen." });
+      }
+    } catch {
+      setStatus({ loading: false, success: false, error: "Netzwerkfehler. Bitte erneut versuchen." });
+    }
   };
 
   return (
@@ -250,12 +284,20 @@ export default function ContactSection() {
           </div>
 
           {/* Submit */}
-          <button
-            type="submit"
-            className="w-full bg-gray-900 text-white text-sm font-semibold py-3 rounded-md flex items-center justify-center gap-2 hover:bg-gray-700 transition-colors duration-200"
-          >
-            Anfrage senden →
-          </button>
+          {status.success ? (
+            <div className="flex items-center gap-2 bg-green-600 text-white text-sm font-semibold py-3 rounded-md w-full justify-center animate-in fade-in zoom-in-95 duration-300">
+              <Check size={18} /> Erfolgreich gesendet!
+            </div>
+          ) : (
+            <button
+              type="submit"
+              disabled={status.loading || !form.agreed}
+              className="w-full bg-gray-900 text-white text-sm font-semibold py-3 rounded-md flex items-center justify-center gap-2 hover:bg-gray-700 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {status.loading ? "Wird gesendet..." : "Anfrage senden →"}
+            </button>
+          )}
+          {status.error && <p className="text-red-500 text-xs text-center">{status.error}</p>}
         </form>
       </div>
     </section>

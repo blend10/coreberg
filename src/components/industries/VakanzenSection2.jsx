@@ -21,19 +21,47 @@ const accordionItems = [
 
 export default function VakanzenSection2() {
   const [openItem, setOpenItem] = useState(2);
-  const [file, setFile] = useState(null);
+  const [pdfFile, setPdfFile] = useState(null);
+  const [jobFile, setJobFile] = useState(null);
+  const [email, setEmail] = useState("");
   const [isSent, setIsSent] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState(null);
 
   const toggle = (id) => setOpenItem(openItem === id ? null : id);
 
-  const handleSend = () => {
-    setIsSent(true);
-    // Here you would hook up the actual Formspree/backend logic.
-    // Reset back to normal after 3.5 seconds.
-    setTimeout(() => {
-      setFile(null);
-      setIsSent(false);
-    }, 3500);
+  const handleSend = async () => {
+    if ((!pdfFile && !jobFile) || !email || isSubmitting) return;
+    setIsSubmitting(true);
+    setError(null);
+
+    const formData = new FormData();
+    if (pdfFile) formData.append("files", pdfFile);
+    if (jobFile) formData.append("files", jobFile);
+    formData.append("email", email);
+    formData.append("type", "Industries Combined Upload");
+
+    try {
+      const res = await fetch("/api/send-job", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (res.ok) {
+        setIsSent(true);
+        setPdfFile(null);
+        setJobFile(null);
+        setEmail("");
+        setTimeout(() => setIsSent(false), 3500);
+      } else {
+        const data = await res.json();
+        setError(data.error || "Etwas ist schiefgelaufen.");
+      }
+    } catch {
+      setError("Netzwerkfehler. Bitte erneut versuchen.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -96,54 +124,83 @@ export default function VakanzenSection2() {
 
         {/* Buttons */}
         <div className="flex flex-wrap gap-3 md:gap-4 mt-2">
-          {!file && !isSent && (
-            <>
-              <label className="cursor-pointer flex items-center gap-2 bg-[#091019] text-white text-sm font-medium px-6 py-3 rounded-md hover:bg-gray-800 transition">
-                UPLOAD PDF <Upload size={16} />
-                <input
-                  type="file"
-                  className="hidden"
-                  accept=".pdf,.doc,.docx"
-                  onChange={(e) => {
-                    const selected = e.target.files?.[0];
-                    if (selected) setFile(selected);
-                  }}
-                />
-              </label>
-              <label className="cursor-pointer flex items-center gap-2 border border-gray-300 text-gray-800 text-sm font-medium px-6 py-3 rounded-md hover:bg-gray-100 transition">
-                UPLOAD JOB AD <Upload size={16} />
-                <input
-                  type="file"
-                  className="hidden"
-                  accept=".pdf,.doc,.docx"
-                  onChange={(e) => {
-                    const selected = e.target.files?.[0];
-                    if (selected) setFile(selected);
-                  }}
-                />
-              </label>
-            </>
-          )}
+          {/* Buttons or File Chips */}
+          {!isSent && (
+            <div className="flex flex-col gap-3 w-full">
+              {/* Conditional Email Field (only if something is selected) */}
+              {(pdfFile || jobFile) && (
+                <div className="flex flex-col gap-1 w-full max-w-sm animate-in fade-in slide-in-from-left-2 duration-300">
+                  <label className="text-xs text-gray-500 font-medium">Ihre E-Mail Adresse *</label>
+                  <input
+                    type="email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="E-Mail"
+                    className="w-full px-4 py-2.5 text-sm border border-gray-200 rounded-md outline-none focus:ring-2 focus:ring-gray-300/50 transition"
+                  />
+                </div>
+              )}
 
-          {file && !isSent && (
-            <div className="flex items-center gap-2 animate-in fade-in slide-in-from-left-2 duration-300">
-              <div className="flex items-center gap-2 bg-gray-100 border border-gray-200 text-gray-800 text-sm font-medium px-4 py-3 rounded-md">
-                <span className="truncate max-w-[120px] md:max-w-[180px]">
-                  {file.name}
-                </span>
-                <button
-                  onClick={() => setFile(null)}
-                  className="text-gray-400 hover:text-red-500 transition-colors"
-                >
-                  <X size={16} />
-                </button>
+              <div className="flex flex-wrap gap-3">
+                {/* PDF Slot */}
+                {!pdfFile ? (
+                  <label className="cursor-pointer flex items-center gap-2 bg-[#091019] text-white text-sm font-medium px-6 py-3 rounded-md hover:bg-gray-800 transition">
+                    UPLOAD PDF <Upload size={16} />
+                    <input
+                      type="file"
+                      className="hidden"
+                      accept=".pdf,.doc,.docx"
+                      onChange={(e) => {
+                        const selected = e.target.files?.[0];
+                        if (selected) setPdfFile(selected);
+                      }}
+                    />
+                  </label>
+                ) : (
+                  <div className="flex items-center gap-2 bg-gray-100 border border-gray-200 text-gray-800 text-sm font-medium px-4 py-3 rounded-md animate-in zoom-in-95 duration-200">
+                    <span className="truncate max-w-[120px]">PDF: {pdfFile.name}</span>
+                    <button onClick={() => setPdfFile(null)} className="text-gray-400 hover:text-red-500 transition-colors">
+                      <X size={16} />
+                    </button>
+                  </div>
+                )}
+
+                {/* Job Slot */}
+                {!jobFile ? (
+                  <label className="cursor-pointer flex items-center gap-2 border border-gray-300 text-gray-800 text-sm font-medium px-6 py-3 rounded-md hover:bg-gray-100 transition">
+                    UPLOAD JOB AD <Upload size={16} />
+                    <input
+                      type="file"
+                      className="hidden"
+                      accept=".pdf,.doc,.docx"
+                      onChange={(e) => {
+                        const selected = e.target.files?.[0];
+                        if (selected) setJobFile(selected);
+                      }}
+                    />
+                  </label>
+                ) : (
+                  <div className="flex items-center gap-2 bg-gray-100 border border-gray-200 text-gray-800 text-sm font-medium px-4 py-3 rounded-md animate-in zoom-in-95 duration-200">
+                    <span className="truncate max-w-[120px]">JOB: {jobFile.name}</span>
+                    <button onClick={() => setJobFile(null)} className="text-gray-400 hover:text-red-500 transition-colors">
+                      <X size={16} />
+                    </button>
+                  </div>
+                )}
+
+                {/* Send Button */}
+                {(pdfFile || jobFile) && (
+                  <button
+                    onClick={handleSend}
+                    disabled={isSubmitting || !email}
+                    className="flex items-center gap-2 bg-[#091019] text-white text-sm font-medium px-6 py-3 rounded-md hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed ml-auto"
+                  >
+                    {isSubmitting ? "WIRD GESENDET…" : "SENDEN"} <ArrowRight size={16} />
+                  </button>
+                )}
               </div>
-              <button
-                onClick={handleSend}
-                className="flex items-center gap-2 bg-[#091019] text-white text-sm font-medium px-6 py-3 rounded-md hover:opacity-90 transition-opacity"
-              >
-                SENDEN <ArrowRight size={16} />
-              </button>
+              {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
             </div>
           )}
 

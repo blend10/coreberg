@@ -142,7 +142,7 @@ export default function AccordionServices() {
       if (hash) {
         const id = hash.replace("#", "");
         const index = services.findIndex(
-          (s) => s.label.toLowerCase().replace(/\s+/g, "-") === id
+          (s) => s.label.toLowerCase().replace(/\s+/g, "-") === id,
         );
         if (index !== -1) {
           setOpenIndex(index);
@@ -226,12 +226,13 @@ export default function AccordionServices() {
 
             {/* Expanded Content */}
             <div
-              className={`overflow-hidden transition-all duration-500 ease-in-out ${openIndex === index
-                ? "max-h-[1200px] opacity-100 pb-8 md:pb-10"
-                : "max-h-0 opacity-0"
-                }`}
+              className={`overflow-hidden transition-all duration-500 ease-in-out ${
+                openIndex === index
+                  ? "max-h-[1200px] opacity-100 pb-8 md:pb-10"
+                  : "max-h-0 opacity-0"
+              }`}
             >
-              <div className="flex flex-col lg:flex-row gap-8 md:gap-10 items-start lg:items-center justify-between pt-2">
+              <div className="flex flex-col xl:flex-row gap-8 md:gap-10 items-start xl:items-center justify-between pt-2">
                 {/* Left: Text */}
                 <div className="flex flex-col w-full lg:w-1/2 gap-4 md:gap-5">
                   <h3 className="text-[22px] lg:text-[24px] xl:text-[26px] font-semibold text-white">

@@ -1,8 +1,52 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { Check } from "lucide-react";
 
 export default function Footer() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    service: "",
+    message: "",
+  });
+  const [status, setStatus] = useState({ loading: false, success: false, error: null });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus({ loading: true, success: false, error: null });
+
+    const data = new FormData();
+    data.append("name", formData.name);
+    data.append("email", formData.email);
+    data.append("service", formData.service);
+    data.append("message", formData.message);
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        body: data,
+      });
+
+      if (response.ok) {
+        setStatus({ loading: false, success: true, error: null });
+        setFormData({ name: "", email: "", service: "", message: "" });
+        setTimeout(() => setStatus((prev) => ({ ...prev, success: false })), 4000);
+      } else {
+        const result = await response.json();
+        setStatus({ loading: false, success: false, error: result.error || "Etwas ist schiefgelaufen." });
+      }
+    } catch (error) {
+      setStatus({ loading: false, success: false, error: "Netzwerkfehler. Bitte später versuchen." });
+    }
+  };
+
   return (
     <div className="bg-white p-3">
       <footer className="bg-[#0A162C] p-3  rounded-[36px] md:rounded-2xl text-white">
@@ -39,7 +83,7 @@ export default function Footer() {
                 Mehrwert gewähren. Diskretion, Professionalität und
                 Verbindlichkeit prägen unsere Arbeitsweise.
               </p>
-              <div className="flex flex-wrap gap-3 mt-2 z-10 relative">
+              {/* <div className="flex flex-wrap gap-3 mt-2 z-10 relative">
                 <a
                   href="#"
                   className="px-7 py-2.5 bg-[#0A162C] rounded-lg text-white text-sm font-medium border border-[#0A162C] hover:bg-transparent hover:text-[#0A162C] hover:border-[#0A162C] transition-colors duration-200"
@@ -52,7 +96,7 @@ export default function Footer() {
                 >
                   Mehr erfahren
                 </a>
-              </div>
+              </div> */}
             </div>
 
             {/* Right: Contact Form */}
@@ -60,47 +104,81 @@ export default function Footer() {
               <h3 className="text-[20px] md:text-[24px] font-semibold text-[#42484E]">
                 Nehmen Sie Kontakt auf
               </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="flex flex-col gap-1">
-                  <label className="text-xs text-[#42484E]">Ihr Name</label>
-                  <input
-                    type="text"
-                    className="bg-transparent border-b border-[#42484E] text-sm text-[#0A162C] py-2 outline-none focus:border-[#42484E] transition-colors placeholder-gray-500"
-                    placeholder=""
-                  />
+              <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="flex flex-col gap-1">
+                    <label className="text-xs text-[#42484E]">Ihr Name</label>
+                    <input
+                      type="text"
+                      name="name"
+                      required
+                      value={formData.name}
+                      onChange={handleChange}
+                      className="bg-transparent border-b border-[#42484E] text-sm text-[#0A162C] py-2 outline-none focus:border-[#42484E] transition-colors placeholder-gray-500"
+                      placeholder=""
+                    />
+                  </div>
+                  <div className="flex flex-col gap-1">
+                    <label className="text-xs text-[#42484E]">
+                      E-Mail-Adresse
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      required
+                      value={formData.email}
+                      onChange={handleChange}
+                      className="bg-transparent border-b border-[#42484E] text-sm text-[#0A162C] py-2 outline-none focus:border-[#42484E] transition-colors placeholder-gray-500"
+                      placeholder=""
+                    />
+                  </div>
                 </div>
                 <div className="flex flex-col gap-1">
-                  <label className="text-xs text-[#42484E]">
-                    E-Mail-Adresse
-                  </label>
-                  <input
-                    type="email"
-                    className="bg-transparent border-b border-[#42484E] text-sm text-[#0A162C] py-2 outline-none focus:border-[#42484E] transition-colors placeholder-gray-500"
-                    placeholder=""
+                  <label className="text-xs text-[#42484E]">Service</label>
+                  <select
+                    name="service"
+                    value={formData.service}
+                    onChange={handleChange}
+                    className="bg-[#B1B9C1] text-sm text-[#0A162C] py-2 px-3 outline-none border-b border-[#42484E] focus:border-[#42484E] transition-colors"
+                  >
+                    <option value="">Service</option>
+                    <option value="executive-search">Executive Search</option>
+                    <option value="talent-advisory">Talent Advisory</option>
+                    <option value="other">Sonstiges</option>
+                  </select>
+                </div>
+                <div className="flex flex-col gap-1">
+                  <label className="text-xs text-[#42484E]">Nachricht</label>
+                  <textarea
+                    rows={3}
+                    name="message"
+                    required
+                    value={formData.message}
+                    onChange={handleChange}
+                    className="bg-transparent border-b border-[#42484E] text-sm text-[#0A162C] py-2 outline-none focus:border-[#42484E] transition-colors resize-none"
                   />
                 </div>
-              </div>
-              <div className="flex flex-col gap-1">
-                <label className="text-xs text-[#42484E]">Service</label>
-                <select className="bg-[#B1B9C1] text-sm text-[#0A162C] py-2 px-3 outline-none border-b border-[#42484E] focus:border-[#42484E] transition-colors">
-                  <option value="">Service</option>
-                  <option value="executive-search">Executive Search</option>
-                  <option value="talent-advisory">Talent Advisory</option>
-                  <option value="other">Sonstiges</option>
-                </select>
-              </div>
-              <div className="flex flex-col gap-1">
-                <label className="text-xs text-[#42484E]">Nachricht</label>
-                <textarea
-                  rows={3}
-                  className="bg-transparent border-b border-[#42484E] text-sm text-[#0A162C] py-2 outline-none focus:border-[#42484E] transition-colors resize-none"
-                />
-              </div>
-              <div className="flex justify-start mt-2">
-                <button className="bg-[#0A162C] hover:bg-[#334570] text-white text-sm px-7 rounded-lg py-2.5 flex items-center gap-2 transition-colors duration-200 w-full sm:w-auto justify-center sm:justify-start">
-                  Anfrage absenden →
-                </button>
-              </div>
+
+                {status.error && (
+                  <p className="text-red-600 text-xs">{status.error}</p>
+                )}
+
+                <div className="flex justify-start mt-2">
+                  {status.success ? (
+                    <div className="flex items-center gap-2 bg-green-600 text-white text-sm px-6 py-2.5 rounded-lg animate-in fade-in zoom-in-95 duration-300 w-full justify-center sm:justify-start font-medium">
+                      <Check size={18} /> Erfolgreich gesendet!
+                    </div>
+                  ) : (
+                    <button
+                      type="submit"
+                      disabled={status.loading}
+                      className="bg-[#0A162C] hover:bg-[#334570] text-white text-sm px-7 rounded-lg py-2.5 flex items-center gap-2 transition-colors duration-200 w-full sm:w-auto justify-center sm:justify-start disabled:opacity-70"
+                    >
+                      {status.loading ? "Wird gesendet..." : "Anfrage absenden →"}
+                    </button>
+                  )}
+                </div>
+              </form>
             </div>
           </div>
         </div>
@@ -219,7 +297,12 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-[13px] text-white hover:underline transition-colors mt-2"
               >
-                <Image src="/images/linkedin.svg" alt="LinkedIn" width={18} height={18} />
+                <Image
+                  src="/images/linkedin.svg"
+                  alt="LinkedIn"
+                  width={18}
+                  height={18}
+                />
                 Linkedin
               </a>
             </div>
