@@ -1,6 +1,11 @@
 import { Resend } from "resend";
 
 export async function POST(req) {
+  console.log(
+    "Checking API Key: ",
+    !!process.env.RESEND_API_KEY,
+    process.env.RESEND_API_KEY?.length,
+  );
   if (!process.env.RESEND_API_KEY) {
     return Response.json({ error: "API Key missing" }, { status: 500 });
   }
