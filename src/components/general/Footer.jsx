@@ -218,6 +218,7 @@ export default function Footer() {
               {[
                 { label: "Startseite", href: "/" },
                 { label: "Über uns", href: "/uberuns" },
+                { label: "Industries", href: "/industries" },
                 { label: "Dienstleistungen", href: "/dienstleistungen" },
                 { label: "Kontakt", href: "/kontakt" },
               ].map((link) => (
