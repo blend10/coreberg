@@ -11,11 +11,10 @@ const montserrat = Montserrat({
 });
 
 export const metadata = {
-  title: "Coreberg - Strategische Personalgewinnung",
-  description: "Exzellente Personalberatung für nachhaltigen Unternehmenserfolg.",
-  icons: {
-    icon: "/images/favicon.png",
-  },
+  title:
+    "COREBERG | Schweizer Personalberatung für Kader und Schlüsselpositionen | Recruitment Excellence | Fachspezialisten und Führungskräfte für Ihr Unternehmen",
+  description:
+    "COREBERG ist Ihre spezialisierte Personalberatung in der Schweiz für anspruchsvolle Kader und Schlüsselpositionen. Wir verbinden Unternehmen mit ausgewählten Persönlichkeiten, diskret, effizient und mit klarem Qualitätsanspruch. Fokus auf nachhaltige Besetzungen, direkte Ansprache und ein belastbares Netzwerk auf Entscheider Ebene.",
 };
 
 export default function RootLayout({ children }) {
@@ -25,7 +24,10 @@ export default function RootLayout({ children }) {
       className={`${montserrat.variable} h-full antialiased`}
       suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col font-sans selection:bg-[#0A162C] selection:text-white" suppressHydrationWarning>
+      <body
+        className="min-h-full flex flex-col font-sans selection:bg-[#0A162C] selection:text-white"
+        suppressHydrationWarning
+      >
         <main className="flex-grow">{children}</main>
         <Footer />
         <ScrollToTop />
@@ -33,4 +35,3 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
-
