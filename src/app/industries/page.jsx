@@ -6,6 +6,12 @@ import StackingCards from "@/components/industries/StackingCards";
 import Strategische from "@/components/industries/Strategische";
 import CorebergHero from "@/components/home/CorebergHero";
 
+export const metadata = {
+  title: "Industries | COREBERG",
+  description:
+    "Erfahrung und Expertise in vielfältigen Industrien und Sektoren.",
+};
+
 const page = () => {
   return (
     <div>

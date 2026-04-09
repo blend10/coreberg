@@ -4,6 +4,11 @@ import StrategicQuote from "@/components/services/StrategicQuote";
 import AccordionServices from "@/components/services/AccordionServices";
 import TrustedPartner from "@/components/home/TrustedPartner";
 
+export const metadata = {
+  title: "Dienstleistungen | COREBERG",
+  description: "Executive Search und massgeschneidertes Recruiting für Ihr Unternehmen.",
+};
+
 const page = () => {
   return (
     <div>

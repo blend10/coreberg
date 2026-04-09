@@ -7,6 +7,11 @@ import CorebergHero from "@/components/home/CorebergHero";
 import TrustedPartner from "@/components/home/TrustedPartner";
 import StrategicQuote from "@/components/services/StrategicQuote";
 
+export const metadata = {
+  title: "Über uns | COREBERG",
+  description: "Lernen Sie unser engagiertes Team und unsere Philosophie kennen.",
+};
+
 const page = () => {
   return (
     <div>

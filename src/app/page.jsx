@@ -6,6 +6,11 @@ import VakanzenSection from "@/components/home/Vakanzen";
 import CorebergHero from "@/components/home/CorebergHero";
 import TrustedPartner from "@/components/home/TrustedPartner";
 
+export const metadata = {
+  title: "COREBERG | Schweizer Personalberatung",
+  description: "Ihre Personalberatung in der Schweiz für Kader und Schlüsselpositionen.",
+};
+
 export default function Home() {
   return (
     <div>
